@@ -25,8 +25,8 @@ Animation acceptance needs timed running-browser measurements and visual inspect
 
 | Stage | Work | Acceptance before advancing | State |
 | --- | --- | --- | --- |
-| 0 | Persist reference spec, plan, evidence conventions | Document observation vs unknown and adaptation | in progress |
-| 1 | Scaffold, tokens/fonts, header, preferences, motion lifecycle | Browser desktop/mobile; semantic/keyboard checks; build | pending |
+| 0 | Persist reference spec, plan, evidence conventions | Document observation vs unknown and adaptation | complete: 6b84032 |
+| 1 | Scaffold, tokens/fonts, header, preferences, motion lifecycle | Browser desktop/mobile; semantic/keyboard checks; build | verified baseline; menu/contact integration staged |
 | 2 | Hero, layered art, ticker, perspective/parallax/ambient motion | Desktop/phone comparison; motion time samples; 3 hard reloads | pending |
 | 3 | Six-project horizontal gallery and mobile stack | Pin/reverse/exit; 768/769 resize; correct destinations/media | pending |
 | 4 | Statement, word reveal, CTA | Trigger and once-only behavior; phone wraps | pending |
@@ -60,5 +60,14 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 - Commit: baseline documentation commit (resolve using git log).
 
 ## Handoff criteria
+
+### 2026-10-10 — Stage 1 foundation
+
+- Reinspected reference desktop1440x900 and phone390x844. Confirmed main background #000, text #dfdfdf, muted/borders #767676, accent #EB0004. Corrected prior plan's light-page assumption before implementation.
+- Implemented pinned dependency stack, self-hosted Cascadia Code, scoped GSAP lifecycle, preferences, semantic fixed header and skip link. Menu is intentionally disabled until its stage; contact temporarily uses public email.
+- Local browser inspected at1280x720 and390x844: no horizontal overflow, theme changes accent to #5135cd and back, no browser errors. Adjusted header top to32px after reference comparison and removed native scrollbar to match reference's uncluttered edge. Larger muted text contrast and native smoothing-off are deliberate improvements.
+- Build/typecheck pass. Sites helper failed resolving npm on Windows; direct installed npm succeeded (0 audit vulnerabilities). Sandbox server was unreachable; approved local server outside sandbox is reachable.
+- Remaining: header menu/contact wiring in later stages; actual motion verification belongs to hero/gallery, not the temporary scaffold content. No perfect-match claim.
+- Commit: foundation milestone; resolve from git log.
 
 Every stage has a local inspection record, motion behavior check, deliberate differences list, and focused commit. Final report identifies remaining gaps, real test results, commit hashes, and whether anything was pushed/deployed. Never label the full site matched while source video/artwork or device coverage is absent.

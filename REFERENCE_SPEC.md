@@ -146,7 +146,7 @@ Status vocabulary: unimplemented; implemented/unverified; verified (specific che
 
 | Section | Reference inspection | Local state | Evidence / unresolved differences |
 | --- | --- | --- | --- |
-| S01 header/global | Observed desktop/phone | unimplemented | Reinspect before implementation. |
+| S01 header/global | Reinspected1440x900 and390x844 | verified baseline | Local1280x720/390x844; theme/overflow/errors checked. Menu/contact/progress integration pending respective stages. |
 | S02 hero/ticker | Observed desktop/tablet/phone + time samples | unimplemented | Own portrait/wordmark/side imagery differ intentionally. |
 | S03 projects | Observed pin/reverse/mobile/video | unimplemented | Six vs four projects; still previews; reference second image404. |
 | S04 statement | Observed one-time reveal | unimplemented | Own copy changes line breaks. |
