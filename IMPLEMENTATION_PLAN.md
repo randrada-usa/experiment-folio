@@ -1,0 +1,64 @@
+# Implementation plan — Experiment Folio
+
+## Approved direction
+
+2026-10-09: user approved starting the build after the reference plan. Use own portfolio content from the beginning; homepage and overlays only, link existing portfolio pages. Maintain focused commits. No push/deployment requested. Target repository was verified empty and cloned into supplied workspace C:\dev\beyblade; original CleanPortfolio checkout is read-only input.
+
+## Non-negotiable section loop
+
+For EVERY section: (1) reinspect original, (2) implement locally, (3) start/check server, (4) inspect local browser, (5) compare identical viewports and equivalent motion progress, (6) fix differences, (7) retest/update both documents, (8) commit verified milestone. Do not implement all sections then defer browser checks.
+
+Animation acceptance needs timed running-browser measurements and visual inspection of frames, not static screenshots alone. Report unavailable physical-device/cross-browser/video-review checks. Deliberate content and accessibility differences are not perfect matches.
+
+## Architecture and content decisions
+
+- Vite + React + TypeScript + CSS + GSAP3.14.2 + @gsap/react; one smooth-scroll owner and media-query cleanup. No router required for one homepage; external existing portfolio destinations.
+- Data interfaces: project title/summary/tags/destination/responsive image/optional video; persisted theme/perspective/smoothing preferences; shared in-memory inquiry draft with distinct instance IDs.
+- Initial theme red, perspective and smoothing on where appropriate; browser reduced-motion overrides decorative motion. Hints session-only.
+- /RJ mark, Rey Jane Andrada identity, existing headline/intro/contact, existing portrait and public project WebP assets. No invented accomplishments.
+- Six projects in source order: Wave & Wish, Iloilo Farmers Hub, e-Serbisyo Rizal, Duely, ICSLink, Praise & Pray. Six visible on mobile in this separate showcase.
+- Contact default: name/email/optional website, single inquiry type, multiple topics, message. Open email draft; copy fallback; no backend and no fake success. Menu and page forms share memory only.
+- No tracking => no cookie dialog. No imported client artwork. No video assets available => honest still previews, support later optional video.
+- Native scrollable menu with initial50vh inset, matching entry/exit timing, proper dialog focus/return and scroll lock. Reduced motion/touch disables bottom auto-navigation.
+
+## Stages and intended commits
+
+| Stage | Work | Acceptance before advancing | State |
+| --- | --- | --- | --- |
+| 0 | Persist reference spec, plan, evidence conventions | Document observation vs unknown and adaptation | in progress |
+| 1 | Scaffold, tokens/fonts, header, preferences, motion lifecycle | Browser desktop/mobile; semantic/keyboard checks; build | pending |
+| 2 | Hero, layered art, ticker, perspective/parallax/ambient motion | Desktop/phone comparison; motion time samples; 3 hard reloads | pending |
+| 3 | Six-project horizontal gallery and mobile stack | Pin/reverse/exit; 768/769 resize; correct destinations/media | pending |
+| 4 | Statement, word reveal, CTA | Trigger and once-only behavior; phone wraps | pending |
+| 5 | Contact heading/pin/form | Wide pin/narrow stack; choices; validation/draft/copy, no sends | pending |
+| 6 | Menu dialog and duplicate form | Entry/exit, independent scrolling, Escape/focus/backdrop, shared draft | pending |
+| 7 | Footer, cursor/progress/skip, page exit/bottom continuation | Marquee/tilt; actual navigation intercepted safely; reduced/touch exceptions | pending |
+| 8 | Integration/regression and polish | Build/typecheck, browser matrix, accessibility, repeated loads | pending |
+
+Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat statement; feat contact; feat menu; feat footer/navigation; focused fix commits and verification docs. Stage only intended paths and inspect staged diff/check before committing. Report hashes separately from push status. Never stage unrelated original portfolio changes.
+
+## Test strategy
+
+- Viewports: 1440x900,1280x720,834x1112,390x844,360x800; boundaries768/769 and1079/1080.
+- Modes: fine pointer/touch emulation, normal/reduced motion, both themes, smoothing/perspective toggles.
+- Scroll: slow/fast, forward/reverse, interrupted, pinned-region entry/exit, anchors with offset, resize while pinned.
+- Dialog: open mid-scroll, repeated open/close, Escape/backdrop, keyboard containment/return, shared input retention, no behind-dialog scrolling.
+- Media: responsive sources, images decoded, missing media fallback, optional videos pause offscreen; never block portrait on animation initialization.
+- Reliability: three hard reloads at desktop/phone, back/forward, localStorage unavailable, no duplicate triggers after resize/remount.
+- Contact: required fields, single/multiple choices, accurate mailto encoding, no fake sent state, clipboard fallback. Intercept navigation during automated tests; never send real email.
+- Performance/accessibility: avoid layout-changing per-frame animation, visible focus, semantic landmarks, reduced-motion static content, clean browser errors, no horizontal document overflow.
+- Build/typecheck are required but not proof of visual match. Automated Chrome is not physical-device or Safari verification.
+
+## Iteration ledger
+
+### 2026-10-09 — Stage 0 baseline
+
+- Completed: reference inspection synthesized into REFERENCE_SPEC.md; explicit content/asset/accessibility differences; empty remote cloned into requested workspace.
+- Remaining: all application implementation and local comparison. Documents are the first commit; no application code existed at this checkpoint.
+- Regressions: none applicable yet.
+- Evidence: prior inspection screenshots under task visualization directory; fresh per-stage evidence will be in ignored artifacts/ with tracked findings here.
+- Commit: baseline documentation commit (resolve using git log).
+
+## Handoff criteria
+
+Every stage has a local inspection record, motion behavior check, deliberate differences list, and focused commit. Final report identifies remaining gaps, real test results, commit hashes, and whether anything was pushed/deployed. Never label the full site matched while source video/artwork or device coverage is absent.
