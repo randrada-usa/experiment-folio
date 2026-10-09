@@ -27,7 +27,7 @@ Animation acceptance needs timed running-browser measurements and visual inspect
 | --- | --- | --- | --- |
 | 0 | Persist reference spec, plan, evidence conventions | Document observation vs unknown and adaptation | complete: 6b84032 |
 | 1 | Scaffold, tokens/fonts, header, preferences, motion lifecycle | Browser desktop/mobile; semantic/keyboard checks; build | verified baseline; menu/contact integration staged |
-| 2 | Hero, layered art, ticker, perspective/parallax/ambient motion | Desktop/phone comparison; motion time samples; 3 hard reloads | pending |
+| 2 | Hero, layered art, ticker, perspective/parallax/ambient motion | Desktop/phone comparison; motion time samples; 3 hard reloads | verified adaptation |
 | 3 | Six-project horizontal gallery and mobile stack | Pin/reverse/exit; 768/769 resize; correct destinations/media | pending |
 | 4 | Statement, word reveal, CTA | Trigger and once-only behavior; phone wraps | pending |
 | 5 | Contact heading/pin/form | Wide pin/narrow stack; choices; validation/draft/copy, no sends | pending |
@@ -60,6 +60,16 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 - Commit: baseline documentation commit (resolve using git log).
 
 ## Handoff criteria
+
+### 2026-10-10 — Stage 2 hero
+
+- Reinspected reference at1440x900 and390x844 before implementation. Built /RJ composition, existing portrait and two existing project-image collages, original accent cross/texture/lightning, parallax, damped perspective, ticker.
+- Local center608.5px wide at desktop versus reference~609px; phone358.8px wide versus~358px. Personal wordmark/copy changes vertical phone position by~15px; acknowledged adaptation.
+- Fixed phone copy words joining across hidden line breaks and excessively dark multiply-blended portrait after viewing actual renders. Neutralized emblem horizontal-centering transform conflict.
+- Motion samples over309ms: ticker x=-525.15 -> -540.73 (~50px/s); perspective non-identity matrix resets to none on toggle. Parallax/ambient are implemented; precise amplitude fidelity and physical touch remain unverified.
+- Three reloads each1440x900/390x844: portrait opacity1 and decoded, no overflow. Browser error log empty. Build/typecheck pass before final CSS positioning adjustment; next stage also rebuilds.
+- Evidence: artifacts/hero-desktop.jpg and artifacts/hero-phone.jpg. Original images/content deliberately differ. No full-animation-perfect-match claim.
+- Commit: hero milestone; resolve via git log.
 
 ### 2026-10-10 — Stage 1 foundation
 
