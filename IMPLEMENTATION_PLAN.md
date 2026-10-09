@@ -28,7 +28,7 @@ Animation acceptance needs timed running-browser measurements and visual inspect
 | 0 | Persist reference spec, plan, evidence conventions | Document observation vs unknown and adaptation | complete: 6b84032 |
 | 1 | Scaffold, tokens/fonts, header, preferences, motion lifecycle | Browser desktop/mobile; semantic/keyboard checks; build | verified baseline; menu/contact integration staged |
 | 2 | Hero, layered art, ticker, perspective/parallax/ambient motion | Desktop/phone comparison; motion time samples; 3 hard reloads | verified adaptation |
-| 3 | Six-project horizontal gallery and mobile stack | Pin/reverse/exit; 768/769 resize; correct destinations/media | pending |
+| 3 | Six-project horizontal gallery and mobile stack | Pin/reverse/exit; 768/769 resize; correct destinations/media | verified adaptation |
 | 4 | Statement, word reveal, CTA | Trigger and once-only behavior; phone wraps | pending |
 | 5 | Contact heading/pin/form | Wide pin/narrow stack; choices; validation/draft/copy, no sends | pending |
 | 6 | Menu dialog and duplicate form | Entry/exit, independent scrolling, Escape/focus/backdrop, shared draft | pending |
@@ -60,6 +60,14 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 - Commit: baseline documentation commit (resolve using git log).
 
 ## Handoff criteria
+
+### 2026-10-10 — Stage 3 project gallery
+
+- Reinspected original at390x844 and1440x900, including time-series horizontal scrubbing. Built six original projects with responsive media, case-study destinations, computed pin travel, hover cursor, focus-visible card scrolling, and optional intersection-controlled video support.
+- Local1440x900: pinned section top~-0.14px, reverse-scroll transform x=-1098.98 -> -744.10 in295ms, progress decreases. No document overflow. Large framed previews and bottom-aligned descriptions visually inspected.
+- Resize769px => one gallery pin;768px => zero pins/native wrapper;390px => six vertical cards/no overflow. All six images decoded after full scroll; last card reaches viewport bottom. A screenshot taken during an unfinished keyboard scroll was discarded/replaced with settled phone evidence.
+- Build/typecheck pass. Evidence artifacts/projects-phone.jpg. Remaining: continuous video review/real touch; owned project clips unavailable. Full-gallery exit is rechecked after adding the following statement.
+- Commit: gallery milestone; resolve via git log.
 
 ### 2026-10-10 — Stage 2 hero
 
