@@ -32,7 +32,7 @@ Animation acceptance needs timed running-browser measurements and visual inspect
 | 4 | Statement, word reveal, CTA | Trigger and once-only behavior; phone wraps | verified adaptation |
 | 5 | Contact heading/pin/form | Wide pin/narrow stack; choices; validation/draft/copy, no sends | verified draft/layout; clipboard failure branch not browser-tested |
 | 6 | Menu dialog and duplicate form | Entry/exit, independent scrolling, Escape/focus/backdrop, shared draft | verified adaptation |
-| 7 | Footer, cursor/progress/skip, page exit/bottom continuation | Marquee/tilt; actual navigation intercepted safely; reduced/touch exceptions | pending |
+| 7 | Footer, cursor/progress/skip, page exit/bottom continuation | Marquee/tilt; safe public navigation test; reduced/narrow exceptions | verified adaptation |
 | 8 | Integration/regression and polish | Build/typecheck, browser matrix, accessibility, repeated loads | pending |
 
 Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat statement; feat contact; feat menu; feat footer/navigation; focused fix commits and verification docs. Stage only intended paths and inspect staged diff/check before committing. Report hashes separately from push status. Never stage unrelated original portfolio changes.
@@ -60,6 +60,14 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 - Commit: baseline documentation commit (resolve using git log).
 
 ## Handoff criteria
+
+### 2026-10-10 — Stage 7 footer and global navigation
+
+- Reinspected original footer at390x844/1440x900. Reference marquee advances~255px/1.2s. Reference track clicks at visible midpoint did not change scroll; no click-seek fidelity claim. Implemented own identity grid, tilted supplied logo, oversized20s text marquee, credits, existing-page links, cursor trail and native accessible progress slider.
+- Local1440x900 marquee x=-1743→-1989 over1114ms. Footer tilt enabled: non-identity matrices settle over706ms, pointer leave returns identity. Exit fade sampled opacity.731→.119 over166ms mid-transition. Complete navigation reaches verified public /projects page; Back restores opacity1.
+- Slider midpoint click yields50.004% page progress; Home/End keys work. Desktop continued-wheel7200px reaches /projects. Phone390px and explicit reduced-motion desktop ignore10-page continued wheel and remain local; reduced mode has0 pins/no cursor/no CSS marquees.
+- Found footer bottom118px out of reach due collapsed hero margin outside smoother content. Added flow-root; retest bottom900.16px at1440x900 and843.21px at390x844, no overflow. Phone screenshot inspected;6vs8 footer links and original RJ/color identity are intentional differences.
+- Build/typecheck and4 unit tests pass. Evidence artifacts/footer-desktop.jpg and footer-phone.jpg. Physical touch and precise trail/hover parity remain unverified; independent tests use current browser viewport emulation.
 
 ### 2026-10-10 — User-supplied RJ branding
 

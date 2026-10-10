@@ -119,7 +119,7 @@ The initial diagnostic screenshots are outside the repository in the task's visu
 | I03 | Hints | Reveals control annotations; aria pressed state. |
 | I04 | Smoothing | Reference preference survives reload. Local native off state intentional. |
 | I05 | Contact / Skip | Contact scrolls to form, Skip to contact region; reference anchor offset ~120px. |
-| I06 | Progress | Drag tested. Track click source-confirmed; explicit reference click test pending. |
+| I06 | Progress | Reference drag tested; visible-track midpoint click produced no scroll change in reinspection. Local native range deliberately adds reliable click/keyboard seeking. |
 | I07 | Menu | Backdrop and Escape close; document scroll retained. Local keyboard behavior improves reference. |
 | I08 | Choice buttons | Exclusive single choice; independently toggled multi choice, tested. |
 | I09 | Form | Never submitted reference. Local mailto draft and copy fallback only; no false sent state. |
@@ -147,13 +147,13 @@ Status vocabulary: unimplemented; implemented/unverified; verified (specific che
 
 | Section | Reference inspection | Local state | Evidence / unresolved differences |
 | --- | --- | --- | --- |
-| S01 header/global | Reinspected1440x900 and390x844 | verified baseline | Local1280x720/390x844; theme/overflow/errors checked. Menu/contact/progress integration pending respective stages. |
+| S01 header/global | Reinspected1440x900 and390x844 | verified adaptation | Theme/logo variants, menu/contact integration, native range click/keyboard, skip and page exit wired. Final regression matrix pending. |
 | S02 hero/ticker | Reinspected1440x900/390x844 + time samples | verified adaptation | Desktop center608.5px vs reference~609px; phone358.8px. Ticker advances; perspective toggles neutral. 3 reloads each pass. Own artwork, milder lightning, ~15px phone vertical offset intentional. |
 | S03 projects | Reinspected pin/reverse/mobile | verified adaptation | Local1440x900 pin and reverse time series;390x844 six cards/media;768/769 cleanup0/1 pins. Six vs four and still media deliberate. |
 | S04 statement | Reinspected390px; prior desktop observed | verified adaptation | Local390/1440 rendered, reveal time samples to opacity1, stays revealed on reverse. Anchor109.87px; gallery progress1 at exit. Own copy changes line breaks. |
 | S05 contact | Reinspected desktop form/pin | verified adaptation |1440x900 form top110.18/left pin72.18;390x844 stacked358.8px form. Radio/checkbox/draft tests pass; two-step prepare/open, no backend. |
 | S06 menu | Reinspected1440x900/390x844 | verified adaptation | Native focus containment/return, independent900px scroll with pageY0, Escape/backdrop, shared draft/resize and About anchor pass. Reduced-motion setting added. Physical touch unverified. |
-| S07 footer | Observed tilt/marquee/continuation | unimplemented | Own identity; reduced-motion and touch exceptions. |
+| S07 footer | Reinspected desktop/phone and timed marquee | verified adaptation |1440/390 geometry; running loop/tilt/reset/fade measured; bottom continuation reaches own projects; Back resets opacity; phone/reduced exceptions tested. Footer reachability fixed. |
 | S08 consent | Observed | intentional difference | No analytics, no unnecessary consent dialog. |
 
 Cross-browser Safari/Firefox, physical-device touch, precise hover easing, custom scrollbar track click, and continuous visual motion review remain inspection gaps. Every stage must log its viewport, settings, motion measurements, evidence paths, failures, fixes, regression checks, and commit in IMPLEMENTATION_PLAN.md.
