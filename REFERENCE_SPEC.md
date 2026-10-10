@@ -28,6 +28,7 @@ The initial diagnostic screenshots are outside the repository in the task's visu
 - Header stays above scrolling content. Bottom-right custom dashed 200px progress track with a draggable thumb; Skip sits beside it.
 - Touch layouts hide pointer-specific controls. Record exact visibility during implementation reinspection.
 - Adaptation: typographic /RJ mark; accessible names, pressed states, focus indicators; no Kala identity.
+- Branding update2026-10-10: user supplied the RJ raster mark. It now replaces the typographic placeholder; red original plus generated purple colorway. Original square canvases retained; CSS frames central artwork.
 
 ### S02 — Hero and link ticker
 

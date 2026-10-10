@@ -3,6 +3,7 @@ import { email, portfolioUrl, socialLinks } from './content';
 import { InquiryForm } from './Inquiry';
 import { gsap, ScrollSmoother, scrollToSection, useMotion } from './motion';
 import './menu.css';
+import { Logo } from './Logo';
 
 export function Menu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -52,7 +53,7 @@ export function Menu({ open, onClose }: { open: boolean; onClose: () => void }) 
   return <dialog ref={dialog} id="navigation-menu" className="menu-dialog" aria-labelledby="menu-title" onCancel={e => { e.preventDefault(); close(); }} onClick={e => { if (!panel.current?.contains(e.target as Node)) close(); }}>
     <div className="menu-stage">
       <div className="menu-panel" ref={panel}>
-        <div className="menu-top"><h2 id="menu-title"><span className="brand-mark">/RJ</span><span>Rey Andrada<br />[Developer]</span><span className="sr-only"> — navigation menu</span></h2><button type="button" className="menu-close" onClick={() => close()} autoFocus>Close ×</button></div>
+        <div className="menu-top"><h2 id="menu-title"><Logo /><span>Rey Andrada<br />[Developer]</span><span className="sr-only"> — navigation menu</span></h2><button type="button" className="menu-close" onClick={() => close()} autoFocus>Close ×</button></div>
         <div className="menu-intro"><p>Practical ideas. Thoughtful systems.</p><p>I’m Rey, a developer in Iloilo building reliable backends and applications that solve real problems. Have a project or opportunity in mind? Let’s talk.</p><p>Say <a href={`mailto:${email}`}>{email}</a></p></div>
         <nav className="menu-links" aria-label="Menu navigation"><div>{['About','Projects','Contact'].map(label => <a key={label} href={`#${label.toLowerCase()}`} onClick={e => { e.preventDefault(); close(() => scrollToSection(label.toLowerCase())); }}>{label}<span>↗</span></a>)}<a href={`${portfolioUrl}/cv`}>Curriculum vitae<span>↗</span></a><a href={`${portfolioUrl}/certifications`}>Certifications<span>↗</span></a></div><div>{socialLinks.map(link => <a key={link.label} href={link.href}>{link.label}<span>↗</span></a>)}</div></nav>
         <div className="menu-preferences"><label><input type="checkbox" checked={motion.reduced} disabled={motion.systemReduced} onChange={e => motion.setMotionPreference(e.target.checked ? 'reduced' : 'system')} /> Reduce motion</label><p>{motion.systemReduced ? 'Following your device’s reduced-motion setting.' : 'Use a static layout, native scrolling, and no decorative motion.'}</p></div>

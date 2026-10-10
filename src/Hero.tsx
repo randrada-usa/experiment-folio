@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { gsap, scrollToSection, useGSAP, useMotion } from './motion';
 import './hero.css';
+import { Logo } from './Logo';
 
 export function Hero() {
   const root = useRef<HTMLElement>(null);
@@ -33,7 +34,7 @@ export function Hero() {
       <span className="hero-emblem" aria-hidden="true">✳</span>
       <p className="hero-location">ILOILO CITY, PH<br /><span>10°43′ N · 122°34′ E</span></p>
     </div>
-    <div className="hero-titlebar"><p>Reliable systems.<br className="phone-break" /> Practical applications.</p><span className="hero-wordmark" aria-hidden="true">/RJ</span></div>
+    <div className="hero-titlebar"><p>Reliable systems.<br className="phone-break" /> Practical applications.</p><Logo className="hero-wordmark" /></div>
     <div className="hero-art corner-frame">
       <svg className="lightning" viewBox="0 0 1400 650" preserveAspectRatio="none" aria-hidden="true"><path d="M-50 380 70 330 114 365 220 240 192 207 345 124 415 160 525 55M-10 606 195 505 270 520 390 412 482 426 550 326 636 345 748 200 854 224 917 127 970 148 1180 10M818 680 900 518 991 557 1060 440 1170 470 1211 330 1328 234 1450 250" /></svg>
       <div className="hero-side hero-left" data-depth="30">

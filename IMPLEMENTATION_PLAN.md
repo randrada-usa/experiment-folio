@@ -61,6 +61,12 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 
 ## Handoff criteria
 
+### 2026-10-10 — User-supplied RJ branding
+
+- Saved original red logo and built-in-tool purple edit in public/assets/brand; exact generation prompt and provenance in ASSET_NOTES.md. Kept white J/black background and four accent rays, no redesign.
+- Replaced placeholder header/hero/menu marks with a shared theme-aware Logo component; supplied original also serves as favicon. CSS frames excess black canvas rather than modifying the original file.
+- Browser1440x900 inspected in both themes: all3 logo instances load the proper source, no clipped lettering. Moved small location text above new taller logo. Phone390x844:290px framed hero logo, no overflow; menu black-tile treatment inspected. Evidence artifacts/logo-purple-desktop.jpg and menu-logo-phone.jpg. Footer will consume the same component.
+
 ### 2026-10-10 — Stage 6 menu
 
 - Reinspected reference menu at390x844/1440x900. Implemented native dialog, white1000px desktop/full-width phone sheet starting50vh, independent scrolling, shared inquiry, local section links and existing CV/certification/social destinations.

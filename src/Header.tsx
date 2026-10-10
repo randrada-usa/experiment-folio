@@ -1,9 +1,10 @@
 import { scrollToSection, useMotion } from './motion';
+import { Logo } from './Logo';
 
 export function Header({ menuOpen, onMenu }: { menuOpen: boolean; onMenu: () => void }) {
   const m = useMotion();
   return <header className={`header ${m.hints ? 'show-hints' : ''}`}>
-    <a className="brand" href="#home" aria-label="Rey Jane Andrada home" onClick={e => { e.preventDefault(); scrollToSection('home'); }}><span className="brand-mark">/RJ</span><span>REY ANDRADA<br />[DEVELOPER]</span></a>
+    <a className="brand" href="#home" aria-label="Rey Jane Andrada home" onClick={e => { e.preventDefault(); scrollToSection('home'); }}><Logo /><span>REY ANDRADA<br />[DEVELOPER]</span></a>
     <nav className="header-controls" aria-label="Page controls">
       <a className="control contact-control" href="#inquiry" onClick={e => {e.preventDefault();scrollToSection('inquiry');}}><span>LET’S TALK</span></a>
       {m.fine && <button className="control" aria-label="Toggle 3D perspective" aria-pressed={m.perspective === 'on' && !m.reduced} disabled={m.reduced} onClick={() => m.setPerspective(m.perspective === 'on' ? 'off' : 'on')}><span>⌁</span><small>↳ perspective</small></button>}
