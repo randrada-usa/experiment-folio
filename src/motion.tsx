@@ -37,9 +37,11 @@ function useSettings() {
   const [perspective, setPerspective] = usePreference('perspective', 'on');
   const [smoothing, setSmoothing] = usePreference('smoothing', 'on');
   const [hints, setHints] = useState(false);
-  const reduced = useMedia('(prefers-reduced-motion: reduce)');
+  const [motionPreference, setMotionPreference] = usePreference('motion', 'system');
+  const systemReduced = useMedia('(prefers-reduced-motion: reduce)');
+  const reduced = systemReduced || motionPreference === 'reduced';
   const fine = useMedia('(min-width: 769px) and (hover: hover) and (pointer: fine)');
-  return { theme, setTheme, perspective, setPerspective, smoothing, setSmoothing, hints, setHints, reduced, fine };
+  return { theme, setTheme, perspective, setPerspective, smoothing, setSmoothing, hints, setHints, reduced, fine, systemReduced, motionPreference, setMotionPreference };
 }
 
 export function MotionProvider({ children }: { children: ReactNode }) {
@@ -65,6 +67,7 @@ export function SmoothPage({ children }: { children: ReactNode }) {
       smoother = ScrollSmoother.create({ wrapper: '#smooth-wrapper', content: '#smooth-content', smooth: 1, effects: false, onFocusIn: (_self, event) => {
         if (event.target instanceof HTMLElement && event.target.getAttribute('tabindex') === '-1') return false;
       } });
+      if (document.querySelector('dialog[open]')) smoother.paused(true);
     }
     let live = true;
     document.fonts.ready.then(() => { if (live) ScrollTrigger.refresh(); });
@@ -83,5 +86,5 @@ export function scrollToSection(id: string) {
   const smoother = ScrollSmoother.get();
   const top = id === 'home' || id === 'main' ? 0 : Math.max(0, target.getBoundingClientRect().top + (smoother?.scrollTop() ?? window.scrollY) - 110);
   if (smoother) smoother.scrollTo(top, true);
-  else window.scrollTo({ top, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  else window.scrollTo({ top, behavior: document.documentElement.dataset.reducedMotion === 'true' ? 'instant' : 'smooth' });
 }

@@ -31,7 +31,7 @@ Animation acceptance needs timed running-browser measurements and visual inspect
 | 3 | Six-project horizontal gallery and mobile stack | Pin/reverse/exit; 768/769 resize; correct destinations/media | verified adaptation |
 | 4 | Statement, word reveal, CTA | Trigger and once-only behavior; phone wraps | verified adaptation |
 | 5 | Contact heading/pin/form | Wide pin/narrow stack; choices; validation/draft/copy, no sends | verified draft/layout; clipboard failure branch not browser-tested |
-| 6 | Menu dialog and duplicate form | Entry/exit, independent scrolling, Escape/focus/backdrop, shared draft | pending |
+| 6 | Menu dialog and duplicate form | Entry/exit, independent scrolling, Escape/focus/backdrop, shared draft | verified adaptation |
 | 7 | Footer, cursor/progress/skip, page exit/bottom continuation | Marquee/tilt; actual navigation intercepted safely; reduced/touch exceptions | pending |
 | 8 | Integration/regression and polish | Build/typecheck, browser matrix, accessibility, repeated loads | pending |
 
@@ -60,6 +60,14 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 - Commit: baseline documentation commit (resolve using git log).
 
 ## Handoff criteria
+
+### 2026-10-10 — Stage 6 menu
+
+- Reinspected reference menu at390x844/1440x900. Implemented native dialog, white1000px desktop/full-width phone sheet starting50vh, independent scrolling, shared inquiry, local section links and existing CV/certification/social destinations.
+- Browser: settled panel top450px desktop/422px phone; scrolling dialog900px leaves pageY0. Escape closes and returns focus to opener; keyboard focus remains in dialog. Backdrop close samples: top451.5→800.4px over243ms, then closed by654ms (sampling overhead included); backgroundY7374 unchanged. About link closes then lands at109.87px.
+- Shared synthetic draft survives menu close/reopen and390→1440 resize; page/menu IDs unique. HMR module reload intentionally clears memory-only drafts, ordinary resizing does not. Added explicit reduced-motion option; browser toggle yields0 pins and static layout, re-enabling restores2 pins.
+- Opening motion observed top458.9→450px; exact full400ms envelope not captured because locator click returned after its start. Fixed close distance when sheet is deeply scrolled. Build/typecheck passed. Evidence artifacts/menu-phone.jpg.
+- New user input: supplied RJ raster logo and requested alternate purple colorway; handled as a separate branding commit, not folded into menu milestone.
 
 ### 2026-10-10 — Stage 5 contact
 

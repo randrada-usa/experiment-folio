@@ -1,0 +1,12 @@
+.menu-dialog{--shade:0;position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:transparent;overflow:auto;overscroll-behavior:contain;scrollbar-width:none;color:var(--text)}
+.menu-dialog::backdrop{background:rgb(0 0 0 / var(--shade))}
+.menu-dialog::-webkit-scrollbar{display:none}
+.menu-stage{min-height:100%;padding:50vh var(--inset) 0;display:flex;justify-content:flex-end;pointer-events:none}
+.menu-panel{--text:#111;--muted:#626262;--line:#888;color-scheme:light;background:#fff;color:var(--text);width:1000px;max-width:100%;padding:42px;position:relative;pointer-events:auto;transform:translateY(0)}
+.menu-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}.menu-top h2{font-size:14px;line-height:1.15}.menu-top h2>span{display:block}.menu-top .brand-mark{font-size:40px;margin-bottom:6px}.menu-close{font-size:13px;padding:5px 0}.menu-close:hover{color:var(--accent)}
+.menu-intro{font-style:italic;font-size:16px;line-height:1.25;margin-top:42px;display:grid;gap:20px}.menu-intro a{color:var(--accent);overflow-wrap:anywhere}
+.menu-links{display:flex;justify-content:center;gap:100px;padding-block:140px 100px;font-size:16px;line-height:1.8}.menu-links>div{display:flex;flex-direction:column;align-items:flex-start}.menu-links a{display:flex;gap:24px}.menu-links a span{opacity:0;color:var(--accent)}.menu-links a:hover span,.menu-links a:focus-visible span{opacity:1}
+.menu-preferences{font-size:13px;padding-bottom:30px}.menu-preferences label{display:flex;gap:10px;align-items:center;cursor:pointer}.menu-preferences input{accent-color:var(--accent);width:18px;height:18px}.menu-preferences p{font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5}
+.menu-panel .inquiry-form{width:100%;max-width:none;min-width:0;margin-top:40px;gap:60px;padding:30px}.menu-panel .form-email{display:none}.menu-credit{margin-top:30px;font-size:11px;color:var(--muted)}
+@media(max-width:746px){.menu-stage{padding-inline:0}.menu-panel{padding:16px}.menu-links{padding:130px 20px 70px;gap:40px;flex-wrap:wrap;justify-content:flex-start}.menu-intro{margin-top:42px}.menu-panel .inquiry-form{padding:30px 16px}.menu-panel .form-eyebrow{top:-28px}.menu-close{position:sticky;top:16px}.menu-credit{padding-bottom:12px}}
+:root[data-reduced-motion=true] *,:root[data-reduced-motion=true] *::before,:root[data-reduced-motion=true] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
