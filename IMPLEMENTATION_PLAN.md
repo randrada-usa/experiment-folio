@@ -30,7 +30,7 @@ Animation acceptance needs timed running-browser measurements and visual inspect
 | 2 | Hero, layered art, ticker, perspective/parallax/ambient motion | Desktop/phone comparison; motion time samples; 3 hard reloads | verified adaptation |
 | 3 | Six-project horizontal gallery and mobile stack | Pin/reverse/exit; 768/769 resize; correct destinations/media | verified adaptation |
 | 4 | Statement, word reveal, CTA | Trigger and once-only behavior; phone wraps | verified adaptation |
-| 5 | Contact heading/pin/form | Wide pin/narrow stack; choices; validation/draft/copy, no sends | pending |
+| 5 | Contact heading/pin/form | Wide pin/narrow stack; choices; validation/draft/copy, no sends | verified draft/layout; clipboard failure branch not browser-tested |
 | 6 | Menu dialog and duplicate form | Entry/exit, independent scrolling, Escape/focus/backdrop, shared draft | pending |
 | 7 | Footer, cursor/progress/skip, page exit/bottom continuation | Marquee/tilt; actual navigation intercepted safely; reduced/touch exceptions | pending |
 | 8 | Integration/regression and polish | Build/typecheck, browser matrix, accessibility, repeated loads | pending |
@@ -60,6 +60,15 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 - Commit: baseline documentation commit (resolve using git log).
 
 ## Handoff criteria
+
+### 2026-10-10 — Stage 5 contact
+
+- Reinspected reference desktop form80px field gaps, offset form and pinned introduction. Implemented same visual hierarchy with personal name/intro/socials, responsive pin, native radio/checkbox fields, and shared in-memory draft provider for forthcoming menu.
+- Local1440x900: form top110.18px after CTA, pinned intro72.18px; phone390x844: no pins, contact top109.68px, form358.8px wide, unique IDs, no overflow. Screenshots inspected (artifacts/contact-desktop.jpg, contact-phone.jpg).
+- Browser-tested synthetic name/email, exclusive inquiry type (pointer label selection), multiple topics and deselection (keyboard), prepared mailto with escaped message. Nothing was sent and email app was not opened. Hidden1px input automation was unreliable; visible pointer labels and Space worked.
+- Deliberate UX adjustment: Prepare email reveals explicit Open email app and Copy draft instead of immediately launching another app. Honest nothing-sent status and readable draft preview. Clipboard success/failure and native mail client remain unverified.
+- Build/typecheck and2 Node tests pass (encoding/optional fields/subject newline cleanup). Remaining: heading reverse timing, form validation regression, menu-shared-state test.
+- Commit: contact milestone; resolve via git log.
 
 ### 2026-10-10 — Stage 4 statement and anchor correction
 

@@ -63,7 +63,7 @@ export function SmoothPage({ children }: { children: ReactNode }) {
     let smoother: ScrollSmoother | undefined;
     if (fine && !reduced && smoothing === 'on') {
       smoother = ScrollSmoother.create({ wrapper: '#smooth-wrapper', content: '#smooth-content', smooth: 1, effects: false, onFocusIn: (_self, event) => {
-        if (event.target instanceof HTMLElement && event.target.matches('section[tabindex="-1"], main[tabindex="-1"]')) return false;
+        if (event.target instanceof HTMLElement && event.target.getAttribute('tabindex') === '-1') return false;
       } });
     }
     let live = true;
