@@ -29,7 +29,7 @@ Animation acceptance needs timed running-browser measurements and visual inspect
 | 1 | Scaffold, tokens/fonts, header, preferences, motion lifecycle | Browser desktop/mobile; semantic/keyboard checks; build | verified baseline; menu/contact integration staged |
 | 2 | Hero, layered art, ticker, perspective/parallax/ambient motion | Desktop/phone comparison; motion time samples; 3 hard reloads | verified adaptation |
 | 3 | Six-project horizontal gallery and mobile stack | Pin/reverse/exit; 768/769 resize; correct destinations/media | verified adaptation |
-| 4 | Statement, word reveal, CTA | Trigger and once-only behavior; phone wraps | pending |
+| 4 | Statement, word reveal, CTA | Trigger and once-only behavior; phone wraps | verified adaptation |
 | 5 | Contact heading/pin/form | Wide pin/narrow stack; choices; validation/draft/copy, no sends | pending |
 | 6 | Menu dialog and duplicate form | Entry/exit, independent scrolling, Escape/focus/backdrop, shared draft | pending |
 | 7 | Footer, cursor/progress/skip, page exit/bottom continuation | Marquee/tilt; actual navigation intercepted safely; reduced/touch exceptions | pending |
@@ -60,6 +60,14 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 - Commit: baseline documentation commit (resolve using git log).
 
 ## Handoff criteria
+
+### 2026-10-10 — Stage 4 statement and anchor correction
+
+- Reinspected phone reference typography31.2px and revealed words; implemented verified personal copy with accent words, corner framing, divider and CTA. Rendered at390x844/1440x900, no overflow.
+- Timed word samples reach opacity1/clear within510ms after partial reveal; words remain revealed on reverse. Removed the initial fade-out transition for unrevealed offscreen words.
+- Found anchor/focus and lazy-image-refresh interactions while testing gallery exit. Explicit numeric smooth-scroll coordinates, section-focus exception, home handler, and removing unnecessary image-load refresh (media dimensions are fixed) stabilize navigation. Retest About from visible hero lands at109.87px; gallery progress1.0000, pin exits correctly.
+- Evidence artifacts/about-desktop.jpg. Build/typecheck passed before small anchor correction; will run again with contact. CTA destination integration is next stage.
+- Commit: statement milestone with scoped navigation fixes.
 
 ### 2026-10-10 — Stage 3 project gallery
 

@@ -62,7 +62,9 @@ export function SmoothPage({ children }: { children: ReactNode }) {
   useGSAP(() => {
     let smoother: ScrollSmoother | undefined;
     if (fine && !reduced && smoothing === 'on') {
-      smoother = ScrollSmoother.create({ wrapper: '#smooth-wrapper', content: '#smooth-content', smooth: 1, effects: false });
+      smoother = ScrollSmoother.create({ wrapper: '#smooth-wrapper', content: '#smooth-content', smooth: 1, effects: false, onFocusIn: (_self, event) => {
+        if (event.target instanceof HTMLElement && event.target.matches('section[tabindex="-1"], main[tabindex="-1"]')) return false;
+      } });
     }
     let live = true;
     document.fonts.ready.then(() => { if (live) ScrollTrigger.refresh(); });
@@ -76,8 +78,10 @@ export function SmoothPage({ children }: { children: ReactNode }) {
 export function scrollToSection(id: string) {
   const target = document.getElementById(id);
   if (!target) return;
-  const smoother = ScrollSmoother.get();
-  if (smoother) smoother.scrollTo(target, true, 'top 110px');
-  else window.scrollTo({ top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - 110), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  // Focus first: ScrollSmoother's focus handler must not override our anchor offset.
   target.focus({ preventScroll: true });
+  const smoother = ScrollSmoother.get();
+  const top = id === 'home' || id === 'main' ? 0 : Math.max(0, target.getBoundingClientRect().top + (smoother?.scrollTop() ?? window.scrollY) - 110);
+  if (smoother) smoother.scrollTo(top, true);
+  else window.scrollTo({ top, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
 }

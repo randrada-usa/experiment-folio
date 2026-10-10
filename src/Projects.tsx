@@ -22,7 +22,7 @@ function Preview({ project }: { project: Project }) {
   }, [reduced]);
   if (failed) return <div className="project-preview media-fallback">{project.title}<span>Preview unavailable · read the case study ↗</span></div>;
   if (project.video) return <video className="project-preview" ref={video} poster={src} src={project.video} muted loop playsInline preload="none" aria-label={`${project.title} demonstration`} onError={() => setFailed(true)} />;
-  return <img className="project-preview" src={src} srcSet={[480,800,1200].map(w => `/assets/projects/${project.image}-card-${w}.webp ${w}w`).join(', ')} sizes="(max-width:768px) 90vw, 950px" alt={`${project.title} project preview`} width="1200" height="675" loading="lazy" onLoad={() => ScrollTrigger.refresh()} onError={() => setFailed(true)} />;
+  return <img className="project-preview" src={src} srcSet={[480,800,1200].map(w => `/assets/projects/${project.image}-card-${w}.webp ${w}w`).join(', ')} sizes="(max-width:768px) 90vw, 950px" alt={`${project.title} project preview`} width="1200" height="675" loading="lazy" onError={() => setFailed(true)} />;
 }
 
 export function Projects() {

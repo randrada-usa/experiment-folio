@@ -149,7 +149,7 @@ Status vocabulary: unimplemented; implemented/unverified; verified (specific che
 | S01 header/global | Reinspected1440x900 and390x844 | verified baseline | Local1280x720/390x844; theme/overflow/errors checked. Menu/contact/progress integration pending respective stages. |
 | S02 hero/ticker | Reinspected1440x900/390x844 + time samples | verified adaptation | Desktop center608.5px vs reference~609px; phone358.8px. Ticker advances; perspective toggles neutral. 3 reloads each pass. Own artwork, milder lightning, ~15px phone vertical offset intentional. |
 | S03 projects | Reinspected pin/reverse/mobile | verified adaptation | Local1440x900 pin and reverse time series;390x844 six cards/media;768/769 cleanup0/1 pins. Six vs four and still media deliberate. |
-| S04 statement | Observed one-time reveal | unimplemented | Own copy changes line breaks. |
+| S04 statement | Reinspected390px; prior desktop observed | verified adaptation | Local390/1440 rendered, reveal time samples to opacity1, stays revealed on reverse. Anchor109.87px; gallery progress1 at exit. Own copy changes line breaks. |
 | S05 contact | Observed pin/form choices | unimplemented | Email draft, no backend or reference budgets. |
 | S06 menu | Observed motion/scroll/Escape | unimplemented | Improve focus/native scroll; physical touch unverified. |
 | S07 footer | Observed tilt/marquee/continuation | unimplemented | Own identity; reduced-motion and touch exceptions. |
