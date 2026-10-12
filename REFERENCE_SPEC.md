@@ -8,6 +8,8 @@ Target repository: https://github.com/randrada-usa/experiment-folio
 
 Inspection date: 2026-10-09
 
+Implementation comparison updated through2026-10-12. See IMPLEMENTATION_PLAN.md for the per-section evidence and final coverage limits.
+
 ## Goal and evidence rules
 
 An animation-showcase homepage using Rey Jane Andrada's content from the start. Recreate the reference's composition and motion language, not its branding or marketing claims. Link to existing portfolio case studies, CV, and other pages. Do not rebuild those routes.
@@ -27,7 +29,7 @@ The initial diagnostic screenshots are outside the repository in the task's visu
 - Small outlined icons, accent highlights, handwritten-style hover/hint annotations.
 - Header stays above scrolling content. Bottom-right custom dashed 200px progress track with a draggable thumb; Skip sits beside it.
 - Touch layouts hide pointer-specific controls. Record exact visibility during implementation reinspection.
-- Adaptation: typographic /RJ mark; accessible names, pressed states, focus indicators; no Kala identity.
+- Adaptation: supplied RJ mark; accessible names, pressed states, focus indicators; no Kala identity.
 - Branding update2026-10-10: user supplied the RJ raster mark. It now replaces the typographic placeholder; red original plus generated purple colorway. Original square canvases retained; CSS frames central artwork.
 
 ### S02 — Hero and link ticker
@@ -88,49 +90,50 @@ The initial diagnostic screenshots are outside the repository in the task's visu
 
 ## 2. Motion inventory
 
-| ID | Effect | Trigger / progression | Evidence and target |
-| --- | --- | --- | --- |
-| A01 | Smooth scroll | Wheel; content interpolates toward native scroll | Observed 600px input settles over ~1s. GSAP smooth=1; reference off=0.1. Local off will be native. |
-| A02 | Perspective | Fine pointer hover/movement; settles on stop, neutral on disable | Observed; source intensity .35, damping .12; distinct layer depths. Disable for touch/reduced motion. |
-| A03 | Hero parallax | Scroll from hero top, reversible | Source nav y=-60/blur2, title y=-40, emblem blur4, scrub1; remeasure against local assets. |
-| A04 | Background lines | Continuous | Source approximately 30s cycles; observed motion. |
-| A05 | Lightning | Delayed continuous irregular flashes | Source 10s loop/2s delay; opacity time series confirms flashes. Use original motif, reduce flashing intensity. |
-| A06 | CTA ticker | Continuous linear | 28s loop observed/source-confirmed. |
-| A07 | Section title | Enters viewport | Height 0 -> natural, 1s power3.out. |
-| A08 | Horizontal gallery | Vertical scroll, pin, reversible scrub | Source travel=track width + heading width +26 - viewport; distance=travel/1.4. Compute dynamically, never fixed page coordinates. |
-| A09 | Project cursor | Media hover / pointer movement | ~100px circular label, scale 0->1, ~350ms overshoot. Desktop only. |
-| A10 | Pointer trail | Pointer movement | Separate difference-blend trailing dots; source-confirmed. Visually retest with project cursor. |
-| A11 | Project video | Intersection | Muted loop; visible playback advances, offscreen pauses. No owned videos available yet. |
-| A12 | Word reveal | Intersection threshold .4 | Blur6/opacity0 -> clear, ~600ms CSS, small randomized delays; once, not reverse. |
-| A13 | Contact heading | Top enters ~90% viewport | y=-100% -> 0, duration600ms/stagger50ms; reverses above trigger. |
-| A14 | Contact pin | Desktop >=1080 | Left at ~8vh until form bottom; observed. |
-| A15 | Menu | Open/close | Open400ms power3.out; close300ms power2.in; backdrop ~200ms plus CSS. |
-| A16 | Footer tilt | Pointer over artwork, reset on leave | Damping .12 and short CSS transition; observed neutral reset. |
-| A17 | Footer marquee | Continuous linear | 20s repeating loop. |
-| A18 | Page exit | Navigation | Smooth wrapper fades ~600ms, fallback navigation by700ms. |
-| A19 | Bottom continuation | Continued downward wheel at bottom | ~6000px accumulated delta; reset after ~800ms idle. Real reference navigated to /projects/. |
+| ID  | Effect              | Trigger / progression                                            | Evidence and target                                                                                                               |
+| --- | ------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| A01 | Smooth scroll       | Wheel; content interpolates toward native scroll                 | Observed 600px input settles over ~1s. GSAP smooth=1; reference off=0.1. Local off will be native.                                |
+| A02 | Perspective         | Fine pointer hover/movement; settles on stop, neutral on disable | Observed; source intensity .35, damping .12; distinct layer depths. Disable for touch/reduced motion.                             |
+| A03 | Hero parallax       | Scroll from hero top, reversible                                 | Source nav y=-60/blur2, title y=-40, emblem blur4, scrub1; remeasure against local assets.                                        |
+| A04 | Background lines    | Continuous                                                       | Source approximately 30s cycles; observed motion.                                                                                 |
+| A05 | Lightning           | Delayed continuous irregular flashes                             | Source 10s loop/2s delay; opacity time series confirms flashes. Use original motif, reduce flashing intensity.                    |
+| A06 | CTA ticker          | Continuous linear                                                | 28s loop observed/source-confirmed.                                                                                               |
+| A07 | Section title       | Enters viewport                                                  | Height 0 -> natural, 1s power3.out.                                                                                               |
+| A08 | Horizontal gallery  | Vertical scroll, pin, reversible scrub                           | Source travel=track width + heading width +26 - viewport; distance=travel/1.4. Compute dynamically, never fixed page coordinates. |
+| A09 | Project cursor      | Media hover / pointer movement                                   | ~100px circular label, scale 0->1, ~350ms overshoot. Desktop only.                                                                |
+| A10 | Pointer trail       | Pointer movement                                                 | Separate difference-blend trailing dots; source-confirmed. Visually retest with project cursor.                                   |
+| A11 | Project video       | Intersection                                                     | Muted loop; visible playback advances, offscreen pauses. No owned videos available yet.                                           |
+| A12 | Word reveal         | Intersection threshold .4                                        | Blur6/opacity0 -> clear, ~600ms CSS, small randomized delays; once, not reverse.                                                  |
+| A13 | Contact heading     | Top enters ~90% viewport                                         | y=-100% -> 0, duration600ms/stagger50ms; reverses above trigger.                                                                  |
+| A14 | Contact pin         | Desktop >=1080                                                   | Left at ~8vh until form bottom; observed.                                                                                         |
+| A15 | Menu                | Open/close                                                       | Open400ms power3.out; close300ms power2.in; backdrop ~200ms plus CSS.                                                             |
+| A16 | Footer tilt         | Pointer over artwork, reset on leave                             | Damping .12 and short CSS transition; observed neutral reset.                                                                     |
+| A17 | Footer marquee      | Continuous linear                                                | 20s repeating loop.                                                                                                               |
+| A18 | Page exit           | Navigation                                                       | Smooth wrapper fades ~600ms, fallback navigation by700ms.                                                                         |
+| A19 | Bottom continuation | Continued downward wheel at bottom                               | ~6000px accumulated delta; reset after ~800ms idle. Real reference navigated to /projects/.                                       |
 
 ## 3. Interaction inventory
 
-| ID | Control | Observed behavior / local contract |
-| --- | --- | --- |
-| I01 | Theme | Red #EB0004 / purple #5135CD; reference swaps 3 art sources and persists theme. Local changes original duotone treatment. |
-| I02 | Perspective | Toggle resets transforms; fine pointers only. |
-| I03 | Hints | Reveals control annotations; aria pressed state. |
-| I04 | Smoothing | Reference preference survives reload. Local native off state intentional. |
-| I05 | Contact / Skip | Contact scrolls to form, Skip to contact region; reference anchor offset ~120px. |
-| I06 | Progress | Reference drag tested; visible-track midpoint click produced no scroll change in reinspection. Local native range deliberately adds reliable click/keyboard seeking. |
-| I07 | Menu | Backdrop and Escape close; document scroll retained. Local keyboard behavior improves reference. |
-| I08 | Choice buttons | Exclusive single choice; independently toggled multi choice, tested. |
-| I09 | Form | Never submitted reference. Local mailto draft and copy fallback only; no false sent state. |
-| I10 | Project links | Existing https://www.devbyrey.me/projects/{slug} destinations. |
-| I11 | Next / overscroll | All-projects destination with visible progress; reduced/touch explicit link only. |
-| I12 | Resize | Reference reloads crossing768; local contexts rebuild without reload. |
+| ID  | Control           | Observed behavior / local contract                                                                                                                                   |
+| --- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| I01 | Theme             | Red #EB0004 / purple #5135CD; reference swaps 3 art sources and persists theme. Local changes original duotone treatment.                                            |
+| I02 | Perspective       | Toggle resets transforms; fine pointers only.                                                                                                                        |
+| I03 | Hints             | Reveals control annotations; aria pressed state.                                                                                                                     |
+| I04 | Smoothing         | Reference preference survives reload. Local native off state intentional.                                                                                            |
+| I05 | Contact / Skip    | Contact scrolls to form, Skip to contact region; reference anchor offset ~120px.                                                                                     |
+| I06 | Progress          | Reference drag tested; visible-track midpoint click produced no scroll change in reinspection. Local native range deliberately adds reliable click/keyboard seeking. |
+| I07 | Menu              | Backdrop and Escape close; document scroll retained. Local keyboard behavior improves reference.                                                                     |
+| I08 | Choice buttons    | Exclusive single choice; independently toggled multi choice, tested.                                                                                                 |
+| I09 | Form              | Never submitted reference. Local mailto draft and copy fallback only; no false sent state.                                                                           |
+| I10 | Project links     | Existing https://www.devbyrey.me/projects/{slug} destinations.                                                                                                       |
+| I11 | Next / overscroll | All-projects destination with visible progress; reduced/touch explicit link only.                                                                                    |
+| I12 | Resize            | Reference reloads crossing768; local contexts rebuild without reload.                                                                                                |
 
 ## 4. Design system, assets and architecture
 
 - Cascadia Code, weight400 as main type; fluid oversized headings, italic contact heading; black page background with light gray text. The menu/consent overlays are light, not the main page.
 - Self-host font with its license. Accent red #EB0004 / purple #5135CD. Confirm exact neutral colors/borders through stage captures.
+- Final adaptation uses #A48AFF for purple text on black to improve readability, while purple artwork and the supplied logo colorway remain deep #5135CD. The white menu retains the deep accent.
 - Responsive WebP portrait and six project preview families from existing CleanPortfolio assets. Copy only public portfolio assets needed here; do not alter original checkout.
 - Keep critical portrait visible by default; no loader event or delayed hidden-opacity gate.
 - No owned mp4/webm found. Still previews are an acknowledged fidelity gap; optional video interface supports later genuine recordings.
@@ -145,15 +148,15 @@ Sources: https://www.trykala.com/, /script.js, /common.js, /styles.css, /common.
 
 Status vocabulary: unimplemented; implemented/unverified; verified (specific checks only); intentional difference; blocked; regression. Never use verified to imply pixel-identical adaptation.
 
-| Section | Reference inspection | Local state | Evidence / unresolved differences |
-| --- | --- | --- | --- |
-| S01 header/global | Reinspected1440x900 and390x844 | verified adaptation | Theme/logo variants, menu/contact integration, native range click/keyboard, skip and page exit wired. Final regression matrix pending. |
-| S02 hero/ticker | Reinspected1440x900/390x844 + time samples | verified adaptation | Desktop center608.5px vs reference~609px; phone358.8px. Ticker advances; perspective toggles neutral. 3 reloads each pass. Own artwork, milder lightning, ~15px phone vertical offset intentional. |
-| S03 projects | Reinspected pin/reverse/mobile | verified adaptation | Local1440x900 pin and reverse time series;390x844 six cards/media;768/769 cleanup0/1 pins. Six vs four and still media deliberate. |
-| S04 statement | Reinspected390px; prior desktop observed | verified adaptation | Local390/1440 rendered, reveal time samples to opacity1, stays revealed on reverse. Anchor109.87px; gallery progress1 at exit. Own copy changes line breaks. |
-| S05 contact | Reinspected desktop form/pin | verified adaptation |1440x900 form top110.18/left pin72.18;390x844 stacked358.8px form. Radio/checkbox/draft tests pass; two-step prepare/open, no backend. |
-| S06 menu | Reinspected1440x900/390x844 | verified adaptation | Native focus containment/return, independent900px scroll with pageY0, Escape/backdrop, shared draft/resize and About anchor pass. Reduced-motion setting added. Physical touch unverified. |
-| S07 footer | Reinspected desktop/phone and timed marquee | verified adaptation |1440/390 geometry; running loop/tilt/reset/fade measured; bottom continuation reaches own projects; Back resets opacity; phone/reduced exceptions tested. Footer reachability fixed. |
-| S08 consent | Observed | intentional difference | No analytics, no unnecessary consent dialog. |
+| Section           | Reference inspection                        | Local state            | Evidence / unresolved differences                                                                                                                                                                                                                                                                |
+| ----------------- | ------------------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| S01 header/global | Reinspected1440x900 and390x844              | verified adaptation    | Theme/logo variants, menu/contact integration, range click/keyboard, skip, page exit/Back and resize matrix checked. Final live reinspection unavailable after browser tool changed.                                                                                                             |
+| S02 hero/ticker   | Reinspected1440x900/390x844 + time samples  | verified adaptation    | Desktop center608.5px vs reference~609px; phone358.8px in baseline pass. Ticker advances; perspective toggles neutral. Repeat reloads pass. Own artwork, milder lightning and the supplied logo's taller mobile composition are intentional; final captures supersede placeholder-logo geometry. |
+| S03 projects      | Reinspected pin/reverse/mobile              | verified adaptation    | Local1440x900 pin and reverse time series;390x844 six cards/media;768/769 cleanup0/1 pins. Six vs four and still media deliberate.                                                                                                                                                               |
+| S04 statement     | Reinspected390px; prior desktop observed    | verified adaptation    | Local390/1440 rendered, reveal time samples to opacity1, stays revealed on reverse. Anchor109.87px; gallery progress1 at exit. Own copy changes line breaks.                                                                                                                                     |
+| S05 contact       | Reinspected desktop form/pin                | verified adaptation    | 1440x900 form top110.18/left pin72.18;390x844 stacked358.8px form. Choices, required/email validation, prepared/shared draft invalidation, copy success and heading reverse checked. No backend; clipboard denial/mail client untested.                                                          |
+| S06 menu          | Reinspected1440x900/390x844                 | verified adaptation    | Independent900px scroll with pageY0, Escape/backdrop, shared draft/resize and anchors pass. Extended test required explicit focus-loop fix;34 forward Tabs and reverse wrap pass. Reduced-motion setting added. Physical touch unverified.                                                       |
+| S07 footer        | Reinspected desktop/phone and timed marquee | verified adaptation    | 1440/390 geometry; running loop/tilt/reset/fade measured; bottom continuation reaches own projects; Back resets opacity; phone/reduced exceptions tested. Footer reachability fixed.                                                                                                             |
+| S08 consent       | Observed                                    | intentional difference | No analytics, no unnecessary consent dialog.                                                                                                                                                                                                                                                     |
 
-Cross-browser Safari/Firefox, physical-device touch, precise hover easing, custom scrollbar track click, and continuous visual motion review remain inspection gaps. Every stage must log its viewport, settings, motion measurements, evidence paths, failures, fixes, regression checks, and commit in IMPLEMENTATION_PLAN.md.
+Cross-browser Safari/Firefox, physical-device touch, precise hover/easing parity and continuous video capture remain gaps. Reference track click was attempted with no movement; local native click seeking is a verified deliberate improvement. Last inspected production bundle and final rebuild match; browser controls were unavailable for an additional final handoff pass. Every stage's viewport, settings, measurements, evidence, fixes and regressions are recorded in IMPLEMENTATION_PLAN.md. No pixel-identical claim is made.

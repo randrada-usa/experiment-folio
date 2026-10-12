@@ -15,7 +15,7 @@ Animation acceptance needs timed running-browser measurements and visual inspect
 - Vite + React + TypeScript + CSS + GSAP3.14.2 + @gsap/react; one smooth-scroll owner and media-query cleanup. No router required for one homepage; external existing portfolio destinations.
 - Data interfaces: project title/summary/tags/destination/responsive image/optional video; persisted theme/perspective/smoothing preferences; shared in-memory inquiry draft with distinct instance IDs.
 - Initial theme red, perspective and smoothing on where appropriate; browser reduced-motion overrides decorative motion. Hints session-only.
-- /RJ mark, Rey Jane Andrada identity, existing headline/intro/contact, existing portrait and public project WebP assets. No invented accomplishments.
+- User-supplied RJ mark in red and purple, Rey Jane Andrada identity, existing headline/intro/contact, existing portrait and public project WebP assets. No invented accomplishments.
 - Six projects in source order: Wave & Wish, Iloilo Farmers Hub, e-Serbisyo Rizal, Duely, ICSLink, Praise & Pray. Six visible on mobile in this separate showcase.
 - Contact default: name/email/optional website, single inquiry type, multiple topics, message. Open email draft; copy fallback; no backend and no fake success. Menu and page forms share memory only.
 - No tracking => no cookie dialog. No imported client artwork. No video assets available => honest still previews, support later optional video.
@@ -23,17 +23,17 @@ Animation acceptance needs timed running-browser measurements and visual inspect
 
 ## Stages and intended commits
 
-| Stage | Work | Acceptance before advancing | State |
-| --- | --- | --- | --- |
-| 0 | Persist reference spec, plan, evidence conventions | Document observation vs unknown and adaptation | complete: 6b84032 |
-| 1 | Scaffold, tokens/fonts, header, preferences, motion lifecycle | Browser desktop/mobile; semantic/keyboard checks; build | verified baseline; menu/contact integration staged |
-| 2 | Hero, layered art, ticker, perspective/parallax/ambient motion | Desktop/phone comparison; motion time samples; 3 hard reloads | verified adaptation |
-| 3 | Six-project horizontal gallery and mobile stack | Pin/reverse/exit; 768/769 resize; correct destinations/media | verified adaptation |
-| 4 | Statement, word reveal, CTA | Trigger and once-only behavior; phone wraps | verified adaptation |
-| 5 | Contact heading/pin/form | Wide pin/narrow stack; choices; validation/draft/copy, no sends | verified draft/layout; clipboard failure branch not browser-tested |
-| 6 | Menu dialog and duplicate form | Entry/exit, independent scrolling, Escape/focus/backdrop, shared draft | verified adaptation |
-| 7 | Footer, cursor/progress/skip, page exit/bottom continuation | Marquee/tilt; safe public navigation test; reduced/narrow exceptions | verified adaptation |
-| 8 | Integration/regression and polish | Build/typecheck, browser matrix, accessibility, repeated loads | pending |
+| Stage | Work                                                           | Acceptance before advancing                                            | State                                                              |
+| ----- | -------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| 0     | Persist reference spec, plan, evidence conventions             | Document observation vs unknown and adaptation                         | complete: 6b84032                                                  |
+| 1     | Scaffold, tokens/fonts, header, preferences, motion lifecycle  | Browser desktop/mobile; semantic/keyboard checks; build                | verified and integrated                                            |
+| 2     | Hero, layered art, ticker, perspective/parallax/ambient motion | Desktop/phone comparison; motion time samples; 3 hard reloads          | verified adaptation                                                |
+| 3     | Six-project horizontal gallery and mobile stack                | Pin/reverse/exit; 768/769 resize; correct destinations/media           | verified adaptation                                                |
+| 4     | Statement, word reveal, CTA                                    | Trigger and once-only behavior; phone wraps                            | verified adaptation                                                |
+| 5     | Contact heading/pin/form                                       | Wide pin/narrow stack; choices; validation/draft/copy, no sends        | verified draft/layout; clipboard failure branch not browser-tested |
+| 6     | Menu dialog and duplicate form                                 | Entry/exit, independent scrolling, Escape/focus/backdrop, shared draft | verified adaptation                                                |
+| 7     | Footer, cursor/progress/skip, page exit/bottom continuation    | Marquee/tilt; safe public navigation test; reduced/narrow exceptions   | verified adaptation                                                |
+| 8     | Integration/regression and polish                              | Build/typecheck, browser matrix, accessibility, repeated loads         | complete within documented browser coverage; limitations below     |
 
 Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat statement; feat contact; feat menu; feat footer/navigation; focused fix commits and verification docs. Stage only intended paths and inspect staged diff/check before committing. Report hashes separately from push status. Never stage unrelated original portfolio changes.
 
@@ -59,7 +59,40 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 - Evidence: prior inspection screenshots under task visualization directory; fresh per-stage evidence will be in ignored artifacts/ with tracked findings here.
 - Commit: baseline documentation commit (resolve using git log).
 
-## Handoff criteria
+## Completed iteration details
+
+### 2026-10-11 to 2026-10-12 — Stage 8 integration and production verification
+
+- All homepage sections and menu are implemented. Code hardening/formatting commit: `daa989d`. Earlier focused milestones remain individually reviewable in Git history. No push or deployment.
+- Rechecked final production build, not only Vite development output. Three reloads each at 1280x720 and 390x844 retained decoded portrait opacity1, correct purple preference/logo, and zero horizontal overflow. These are ordinary browser reloads; cache-disabled reload behavior was not independently established in this pass.
+- Production browser warning/error log empty. Contact anchor landed at110.28px; contact heading transform returned from identity to y=-53.53px on reverse. Keyboard focus on Duely brought its card fully into view (left41.30px/right1315.60px at1440px).
+- Form: empty required name and invalid email block preparation and focus the relevant field. Copy draft reports success; no email app was opened and nothing sent. Editing either form now invalidates both prepared views, verified with a shared synthetic draft. Clipboard-denial UI remains untested.
+- Extended menu keyboard test exposed a native last-control escape missed by the earlier short check. Added explicit focus wrapping; retest34 successive Tab presses never left the dialog, Shift+Tab on Close focused Prepare email, and Escape returned focus to the opener.
+- Reduced-motion tablet preview exposed a card description extending past its intended inset. Limited media width to leave room for its260px description and22px gap; retest769px has matching card/description right edges738.56px, zero pins and no overflow.
+- Purple text now uses #A48AFF on black while artwork/logo keep #5135CD; white menu uses the deep accent. Calculated token contrast: purple ink/black7.66:1, deep purple/white7.66:1, red/black4.53:1. This is a color-token check, not a whole-site accessibility certification.
+- Added a one-shot navigation guard, progress refresh synchronization, readable formatting scripts, README and packaged font/React notices. Removed only the obsolete scaffold favicon; it remains recoverable from Git, and the supplied logo is the current favicon.
+- Current final commands (2026-10-12): build/typecheck PASS,4 unit tests PASS, format check PASS, dependency audit reported0 vulnerabilities. JS bundle381.85kB raw /127.97kB gzip; CSS26.30kB raw /6.66kB gzip. Assets are additional.
+- Final screenshots: `artifacts/final-desktop.jpg`, `artifacts/final-phone-purple.jpg`; all stage evidence remains local/ignored. Last inspected production output used `index-DMrj19MF.js` and `index-BThEqLSM.css`; the final rebuild produces the same filenames.
+- At final handoff, the previous browser-control tool and retained server session handles were no longer available. No new app changes were made after the last successful browser inspection, and no extra live comparison or viewport-reset claim is made. Restart with `npm run dev`; final live-server availability is not promised.
+
+#### Viewport regression record
+
+| Viewport    | Checked result                                                                                                    |
+| ----------- | ----------------------------------------------------------------------------------------------------------------- |
+| 1440x900    | Hero/menu/footer inspected;2 pins; modal focus loop; exit/Back; no document overflow                              |
+| 1280x720    | Production screenshot and3 reloads;2 pins; visible decoded portrait; no overflow                                  |
+| 834x1112    | Tablet hero/gallery inspected;1 normal pin; reduced static layout inspected                                       |
+| 390x844     | Hero/menu/contact/footer inspected;0 pins;3 production reloads; logo/theme persistence; no automatic continuation |
+| 360x800     | Narrow hero and controls inspected;0 pins; images decoded; no overflow                                            |
+| 768 / 769   | Normal gallery changes from0 to1 pin; no document reload required;769 reduced layout fits after fix               |
+| 1079 / 1080 | Settled pin count changes1→2; immediate resize sampling can precede ScrollTrigger refresh                         |
+
+#### Remaining checks and deliberate differences
+
+- Physical touchscreen momentum, Safari/Firefox, OS-level reduced-motion switching, blocked localStorage and denied clipboard permission were not exercised. Menu reduced-motion override and its persisted/static behavior were exercised.
+- No continuous video capture or frame-perfect easing certification. Running-browser time samples and pointer/scroll/keyboard actions support only the specific observations recorded here.
+- No owned project video clips are available. Still previews, personal copy/branding, six projects, native range seeking, brighter purple text, and accessible modal behavior deliberately differ from the reference.
+- Original CleanPortfolio checkout remains unchanged. No backend, analytics, cookie banner, reference illustrations or reference form endpoint was added.
 
 ### 2026-10-10 — Stage 7 footer and global navigation
 
