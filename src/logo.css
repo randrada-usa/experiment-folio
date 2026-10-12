@@ -1,7 +1,48 @@
-.logo-art{display:inline-block;position:relative;aspect-ratio:950/550;overflow:hidden;background:#000;flex-shrink:0;width:60px;vertical-align:middle}
-.logo-art img{position:absolute;width:134.737%;max-width:none;height:auto;left:-16.316%;top:-59.636%;pointer-events:none}
-.brand .logo-art{width:48px}
-.hero-titlebar .hero-wordmark{width:330px;max-width:45%;font-size:initial;letter-spacing:normal;padding:0;transform:none;line-height:normal}
-.hero-location{top:-34px}
-.menu-top h2 .logo-art{width:70px;margin-bottom:10px}
-@media(max-width:596px){.brand .logo-art{width:40px}.hero-titlebar .hero-wordmark{width:290px;max-width:90%;margin-top:-10px}}
+.logo-art {
+  display: inline-block;
+  position: relative;
+  aspect-ratio: 950/550;
+  overflow: hidden;
+  background: #000;
+  flex-shrink: 0;
+  width: 60px;
+  vertical-align: middle;
+}
+.logo-art img {
+  position: absolute;
+  width: 134.737%;
+  max-width: none;
+  height: auto;
+  left: -16.316%;
+  top: -59.636%;
+  pointer-events: none;
+}
+.brand .logo-art {
+  width: 48px;
+}
+.hero-titlebar .hero-wordmark {
+  width: 330px;
+  max-width: 45%;
+  font-size: initial;
+  letter-spacing: normal;
+  padding: 0;
+  transform: none;
+  line-height: normal;
+}
+.hero-location {
+  top: -34px;
+}
+.menu-top h2 .logo-art {
+  width: 70px;
+  margin-bottom: 10px;
+}
+@media (max-width: 596px) {
+  .brand .logo-art {
+    width: 40px;
+  }
+  .hero-titlebar .hero-wordmark {
+    width: 290px;
+    max-width: 90%;
+    margin-top: -10px;
+  }
+}
