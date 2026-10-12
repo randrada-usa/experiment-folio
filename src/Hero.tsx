@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { gsap, scrollToSection, useGSAP, useMotion } from "./motion";
 import "./hero.css";
 import { Logo } from "./Logo";
+import { bindPointerPerspective } from "./pointer-perspective";
 
 export function Hero() {
   const root = useRef<HTMLElement>(null);
@@ -47,50 +48,24 @@ export function Hero() {
   useGSAP(
     () => {
       if (reduced || !fine || perspective !== "on") return;
-      const layers = gsap.utils.toArray<HTMLElement>(
-        "[data-depth]",
-        root.current,
-      );
-      const setters = layers.map((el) => ({
-        el,
-        depth: Number(el.dataset.depth),
-        x: gsap.quickTo(el, "x", { duration: 0.7, ease: "power3.out" }),
-        y: gsap.quickTo(el, "y", { duration: 0.7, ease: "power3.out" }),
-        rx: gsap.quickTo(el, "rotationX", {
-          duration: 0.7,
-          ease: "power3.out",
-        }),
-        ry: gsap.quickTo(el, "rotationY", {
-          duration: 0.7,
-          ease: "power3.out",
-        }),
-      }));
-      const move = (e: PointerEvent) => {
-        if (!root.current || root.current.getBoundingClientRect().bottom < 0)
-          return;
-        const x = e.clientX / innerWidth - 0.5,
-          y = e.clientY / innerHeight - 0.5;
-        setters.forEach((s) => {
-          s.x(x * s.depth * 0.35);
-          s.y(y * s.depth * 0.35);
-          s.rx(-y * 3);
-          s.ry(x * 4);
-        });
-      };
-      const reset = () =>
-        setters.forEach((s) => {
-          s.x(0);
-          s.y(0);
-          s.rx(0);
-          s.ry(0);
-        });
-      window.addEventListener("pointermove", move);
-      document.documentElement.addEventListener("pointerleave", reset);
-      return () => {
-        window.removeEventListener("pointermove", move);
-        document.documentElement.removeEventListener("pointerleave", reset);
-        gsap.set(layers, { clearProps: "transform" });
-      };
+      const section = root.current!;
+      return bindPointerPerspective(section, [
+        {
+          element: section.querySelector<HTMLElement>(".hero-art")!,
+          travel: 14,
+          tilt: 1.4,
+        },
+        {
+          element: section.querySelector<HTMLElement>(".hero-left")!,
+          travel: 28,
+          tilt: 2.8,
+        },
+        {
+          element: section.querySelector<HTMLElement>(".hero-right")!,
+          travel: 28,
+          tilt: 0.7,
+        },
+      ]);
     },
     {
       scope: root,
@@ -169,7 +144,7 @@ export function Hero() {
         >
           <path d="M-50 380 70 330 114 365 220 240 192 207 345 124 415 160 525 55M-10 606 195 505 270 520 390 412 482 426 550 326 636 345 748 200 854 224 917 127 970 148 1180 10M818 680 900 518 991 557 1060 440 1170 470 1211 330 1328 234 1450 250" />
         </svg>
-        <div className="hero-side hero-left" data-depth="30">
+        <div className="hero-side hero-left">
           <a
             className="side-art side-art-game"
             href="https://www.devbyrey.me/projects/wave-and-wish"
@@ -193,7 +168,7 @@ export function Hero() {
             <span className="accent">else reliable.</span>
           </p>
         </div>
-        <div className="portrait-art" data-depth="80">
+        <div className="portrait-art">
           <div className="portrait-cross" aria-hidden="true" />
           <span className="portrait-topline">
             REY JANE ANDRADA <span>© 2026</span>
@@ -219,7 +194,7 @@ export function Hero() {
             BACKEND / DATA /<br />A WORK IN PROGRESS ↗
           </span>
         </div>
-        <div className="hero-side hero-right" data-depth="50">
+        <div className="hero-side hero-right">
           <a
             className="side-art side-art-web"
             href="https://www.devbyrey.me/projects/iloilo-farmers-hub"

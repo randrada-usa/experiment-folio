@@ -92,7 +92,6 @@
   max-width: 1700px;
   margin-inline: auto;
   isolation: isolate;
-  perspective: 800px;
 }
 .hero-side {
   flex: 2;
