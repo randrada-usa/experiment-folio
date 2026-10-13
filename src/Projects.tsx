@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { projects, portfolioUrl } from "./content";
 import type { Project } from "./content";
 import { gsap, ScrollTrigger, useGSAP, useMotion } from "./motion";
+import { bindPointerPerspective } from "./pointer-perspective";
 import "./projects.css";
 
 function Preview({ project }: { project: Project }) {
@@ -74,7 +75,33 @@ function Preview({ project }: { project: Project }) {
 export function Projects() {
   const root = useRef<HTMLElement>(null);
   const cursor = useRef<HTMLDivElement>(null);
-  const { reduced, fine } = useMotion();
+  const { reduced, fine, perspective } = useMotion();
+  useGSAP(
+    () => {
+      if (reduced || !fine || perspective !== "on") return;
+      return bindPointerPerspective(root.current!, [
+        {
+          element: root.current!.querySelector<HTMLElement>(
+            ".project-perspective",
+          )!,
+          travel: 49,
+          tilt: 9.8,
+          maxRightTilt: 3,
+        },
+        {
+          element:
+            root.current!.querySelector<HTMLElement>(".projects-heading")!,
+          travel: 49,
+          tilt: 2.8,
+        },
+      ]);
+    },
+    {
+      scope: root,
+      dependencies: [reduced, fine, perspective],
+      revertOnUpdate: true,
+    },
+  );
   useGSAP(
     () => {
       if (reduced) return;
@@ -165,37 +192,39 @@ export function Projects() {
           <span>projects</span>
           <small>[ SIX WAYS TO MAKE AN IDEA REAL ]</small>
         </h2>
-        <div className="project-track">
-          {projects.map((project, index) => (
-            <a
-              className="project"
-              data-project={project.slug}
-              key={project.slug}
-              href={`${portfolioUrl}/projects/${project.slug}`}
-              onFocus={(e) => revealCard(e.currentTarget)}
-              onPointerEnter={(e) => {
-                moveCursor(e);
-                cursor.current?.classList.add("is-visible");
-              }}
-              onPointerMove={moveCursor}
-              onPointerLeave={() =>
-                cursor.current?.classList.remove("is-visible")
-              }
-            >
-              <div className="project-media">
-                <span className="project-number">[ 0{index + 1} / 06 ]</span>
-                <Preview project={project} />
-              </div>
-              <div className="project-info">
-                <p className="project-category">{project.category}</p>
-                <h3>
-                  {project.title} <span>↗</span>
-                </h3>
-                <p className="project-description">{project.summary}</p>
-                <p className="project-tags">{project.tags}</p>
-              </div>
-            </a>
-          ))}
+        <div className="project-perspective">
+          <div className="project-track">
+            {projects.map((project, index) => (
+              <a
+                className="project"
+                data-project={project.slug}
+                key={project.slug}
+                href={`${portfolioUrl}/projects/${project.slug}`}
+                onFocus={(e) => revealCard(e.currentTarget)}
+                onPointerEnter={(e) => {
+                  moveCursor(e);
+                  cursor.current?.classList.add("is-visible");
+                }}
+                onPointerMove={moveCursor}
+                onPointerLeave={() =>
+                  cursor.current?.classList.remove("is-visible")
+                }
+              >
+                <div className="project-media">
+                  <span className="project-number">[ 0{index + 1} / 06 ]</span>
+                  <Preview project={project} />
+                </div>
+                <div className="project-info">
+                  <p className="project-category">{project.category}</p>
+                  <h3>
+                    {project.title} <span>↗</span>
+                  </h3>
+                  <p className="project-description">{project.summary}</p>
+                  <p className="project-tags">{project.tags}</p>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
       {fine &&

@@ -5,7 +5,10 @@
   gap: 26px;
   height: 100dvh;
   padding-inline: var(--inset);
-  overflow: hidden;
+  /* Clip without becoming a native scroller: keyboard focus is revealed by
+     ScrollTrigger, not a second horizontal scroll offset. */
+  overflow: clip;
+  perspective: 800px;
 }
 .projects-section * {
   flex-shrink: 0;
@@ -30,6 +33,10 @@
   line-height: 1.5;
   margin-top: 28px;
   color: var(--muted);
+}
+.project-perspective {
+  width: max-content;
+  height: 100%;
 }
 .project-track {
   display: flex;
@@ -164,6 +171,10 @@
     margin-top: 16px;
     font-size: 9px;
   }
+  .project-perspective {
+    width: 100%;
+    height: auto;
+  }
   .project-track {
     height: auto;
     flex-direction: column;
@@ -214,6 +225,10 @@
   width: 100%;
   gap: 80px;
   padding: 0;
+}
+.projects-static .project-perspective {
+  width: 100%;
+  height: auto;
 }
 .projects-static .project {
   height: auto;

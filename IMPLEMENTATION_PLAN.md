@@ -52,6 +52,15 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 
 ## Iteration ledger
 
+### 2026-10-13 — Stage 9a/9b implementation
+
+- Hero change is preserved in existing commit `be22ebe`: shared mild parent, equal side travel, stronger left-side rotation. Prior live 1652x880 samples matched the reference's settled transforms; toggle-off cleared all three transforms. Per-frame damping is 0.12; frame-perfect wall-clock timing is not certified.
+- Reinspected the live reference gallery, including left/right movement and discrete cursor circles. Confirmed the positive rotateY cap of 3 degrees. Implemented a shared pointer wrapper (49px travel, 9.8-degree tilt, positive yaw capped at 3) and independently moving heading (49px / 2.8 degrees). Scroll translation remains on the inner track.
+- Browser checked local gallery at 1440x900 and matching reference/local 1468x936. Left/right positions produced shrink/grow projection; right cap reached 3 degrees; perspective-off clears wrapper and heading. First project link reached the existing Wave & Wish case study and Back restored root opacity to 1.
+- Regression found and fixed during keyboard testing: focus could native-scroll the overflow-hidden section in addition to ScrollTrigger, leaving the final card offscreen. Changed section overflow to `clip`. Retest: last card focused and visible, section scrollLeft=0.
+- Own six-card strip is longer than the reference four-card strip, so projected sizes are not pixel-identical despite equivalent transforms. Existing heading placement also differs (local heading remains behind the pinned cards). Do not label the full gallery visually identical. Mobile/reduced-motion and trail checks follow in Stage 9c.
+- Preview restarted on http://127.0.0.1:5174/ because the sandbox-started 5173 preview was inaccessible to Chrome. Typecheck passed after gallery edits.
+
 ### 2026-10-12 — Pointer-motion review and proposed Stage 9 (plan only)
 
 - Reopened the live reference homepage and `/projects/` page at approximately 1652x880. Positioned the pointer at left/center/right and high/low locations and inspected in-motion screenshots plus settled DOM transforms. Detailed samples and confidence limits are in `REFERENCE_SPEC.md` under “Pointer-position reinspection.” No application code changed in this review.
