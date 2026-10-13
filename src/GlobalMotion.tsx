@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { portfolioUrl } from "./content";
 import { continuationProgress, wheelPixels } from "./navigation-model";
+import { advanceTrail, createTrail, lockTrail } from "./cursor-trail";
 import {
   gsap,
   ScrollSmoother,
@@ -155,27 +156,32 @@ export function GlobalMotion({ menuOpen }: { menuOpen: boolean }) {
   useEffect(() => {
     if (!fine || reduced || menuOpen || !trail.current) return;
     const dots = [...trail.current.children] as HTMLElement[];
-    const points = dots.map(() => ({ x: 0, y: 0 }));
+    let points = createTrail({ x: 0, y: 0 }, dots.length);
     let mouse = { x: 0, y: 0 },
       frame = 0,
+      lastMove = 0,
+      idle = false,
       active = false;
-    const animate = () => {
-      let target = mouse,
-        remaining = 0;
+    const animate = (now: number) => {
+      if (!active) return;
+      if (!idle && now - lastMove >= 150) {
+        idle = true;
+        lockTrail(points);
+      }
+      advanceTrail(points, mouse, idle);
       dots.forEach((dot, i) => {
         const p = points[i];
-        p.x += (target.x - p.x) * 0.45;
-        p.y += (target.y - p.y) * 0.45;
-        remaining += Math.abs(target.x - p.x) + Math.abs(target.y - p.y);
-        dot.style.transform = `translate3d(${p.x}px,${p.y}px,0) scale(${(dots.length - i) / dots.length})`;
-        target = p;
+        dot.style.transform = `translate3d(${p.x}px,${p.y}px,0) scale(${p.scale})`;
       });
-      frame = remaining > 0.2 ? requestAnimationFrame(animate) : 0;
+      frame = requestAnimationFrame(animate);
     };
     const move = (e: PointerEvent) => {
+      if (e.pointerType === "touch") return;
       mouse = { x: e.clientX, y: e.clientY };
+      lastMove = performance.now();
+      idle = false;
       if (!active) {
-        points.forEach((p) => Object.assign(p, mouse));
+        points = createTrail(mouse, dots.length);
         active = true;
         trail.current!.style.opacity = "1";
       }
@@ -183,13 +189,22 @@ export function GlobalMotion({ menuOpen }: { menuOpen: boolean }) {
     };
     const leave = () => {
       active = false;
+      cancelAnimationFrame(frame);
+      frame = 0;
       if (trail.current) trail.current.style.opacity = "0";
     };
+    const visibility = () => {
+      if (document.hidden) leave();
+    };
     window.addEventListener("pointermove", move);
+    window.addEventListener("blur", leave);
+    document.addEventListener("visibilitychange", visibility);
     document.documentElement.addEventListener("pointerleave", leave);
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("pointermove", move);
+      window.removeEventListener("blur", leave);
+      document.removeEventListener("visibilitychange", visibility);
       document.documentElement.removeEventListener("pointerleave", leave);
       leave();
     };

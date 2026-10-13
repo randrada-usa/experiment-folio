@@ -34,7 +34,7 @@ Animation acceptance needs timed running-browser measurements and visual inspect
 | 6     | Menu dialog and duplicate form                                 | Entry/exit, independent scrolling, Escape/focus/backdrop, shared draft | verified adaptation                                                |
 | 7     | Footer, cursor/progress/skip, page exit/bottom continuation    | Marquee/tilt; safe public navigation test; reduced/narrow exceptions   | verified adaptation                                                |
 | 8     | Integration/regression and polish                              | Build/typecheck, browser matrix, accessibility, repeated loads         | complete within documented browser coverage; limitations below     |
-| 9     | Pointer-motion fidelity refinement (hero, gallery, trail)       | Matching-viewport moving-browser comparison and regression matrix     | planned only; no application edits in 2026-10-12 review             |
+| 9     | Pointer-motion fidelity refinement (hero, gallery, trail)       | Matching-viewport moving-browser comparison and regression matrix     | implemented and checked within the coverage below; exact timing/geometry parity not claimed |
 
 Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat statement; feat contact; feat menu; feat footer/navigation; focused fix commits and verification docs. Stage only intended paths and inspect staged diff/check before committing. Report hashes separately from push status. Never stage unrelated original portfolio changes.
 
@@ -51,6 +51,15 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 - Build/typecheck are required but not proof of visual match. Automated Chrome is not physical-device or Safari verification.
 
 ## Iteration ledger
+
+### 2026-10-13 — Stage 9c trail and regression pass
+
+- Reinspected reference fast pointer relocations: separate tapered circles are visible, with small tail flutter after stopping. Public active cursor implementation confirms 20 circles, 26px base diameter, direct head, 35% retained follower history, 150ms idle threshold, and 0.05-radian/frame idle phase. Implemented these behaviors without introducing a blur/connecting stroke; deterministic staggered phases substitute for reference random phases.
+- Trail starts at the first pointer position, hides/cancels on leave, blur or hidden document, and is removed for the menu, narrow screens, and reduced motion. Browser fast relocation to (734,70) produced head=(734,70), next=(512.1,360.5), next=(367.865,549.325); the 26px circles were visibly separate. Later samples showed the first seven dots anchored and the tail fluttering. These observations and live perspective samples are motion checks, not a screenshot-only acceptance claim.
+- Added three model tests: tapered initialization, direct-head/history-follow and separated fast-move circles, bounded idle flutter/resume. All seven tests and production build/typecheck pass. Build JS383.41kB /128.45kB gzip; CSS26.45kB /6.69kB gzip.
+- Browser matrix: local/reference1468x936; additional local1440x900; 390x844 vertical cards with no trail/tilt/overflow;768px vertical/no trail;769px horizontal/trail restored with no overflow. This is viewport testing, not physical touch emulation. Both red/purple rendered, browser warning/error log empty. Menu removed the trail; Reduce motion produced static vertical cards and cleared hero/gallery transforms; restored normal mode successfully.
+- Matching upper-center position at1468x936 showed positive rotateX near7.5 degrees in both running pages (expected settled~8.02), reversing the lower-pointer sign. Left/right projections, +3-degree cap, reverse scrolling, focus to final card, perspective toggle cleanup and project navigation/Back were checked. Automated calls may return pre-render screenshots; follow-up DOM/screenshot checks were used. Continuous high-speed path timing, physical-device touch, other browsers, and the full original Stage9 matrix remain unverified.
+- Local evidence (ignored, not committed): `artifacts/pointer-motion-purple.jpg`, `artifacts/gallery-pointer-trail.jpg`. Exact pixel parity is not claimed: six vs four cards changes the projection; the existing heading placement differs; idle phases differ. No new regressions remain from the checks performed; the keyboard-scroll regression is fixed in1168de7. No dependencies added and no push/deployment performed.
 
 ### 2026-10-13 — Stage 9a/9b implementation
 

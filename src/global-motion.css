@@ -69,10 +69,10 @@
 }
 .pointer-trail i {
   position: absolute;
-  left: -10px;
-  top: -10px;
-  width: 20px;
-  height: 20px;
+  left: -13px;
+  top: -13px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: #fff;
   will-change: transform;
