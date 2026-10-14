@@ -155,7 +155,8 @@ export function GlobalMotion({ menuOpen }: { menuOpen: boolean }) {
 
   useEffect(() => {
     if (!fine || reduced || menuOpen || !trail.current) return;
-    const dots = [...trail.current.children] as HTMLElement[];
+    const dots = [...trail.current.querySelectorAll("i")];
+    const joins = [...trail.current.querySelectorAll("line")];
     let points = createTrail({ x: 0, y: 0 }, dots.length);
     let mouse = { x: 0, y: 0 },
       frame = 0,
@@ -164,7 +165,11 @@ export function GlobalMotion({ menuOpen }: { menuOpen: boolean }) {
       active = false;
     const animate = (now: number) => {
       if (!active) return;
-      if (!idle && now - lastMove >= 150) {
+      if (
+        !idle &&
+        now - lastMove >= 150 &&
+        points.every((p) => Math.hypot(p.x - mouse.x, p.y - mouse.y) < 3)
+      ) {
         idle = true;
         lockTrail(points);
       }
@@ -172,11 +177,24 @@ export function GlobalMotion({ menuOpen }: { menuOpen: boolean }) {
       dots.forEach((dot, i) => {
         const p = points[i];
         dot.style.transform = `translate3d(${p.x}px,${p.y}px,0) scale(${p.scale})`;
+        const join = joins[i];
+        const next = points[i + 1];
+        if (join && next) {
+          join.setAttribute("x1", String(p.x));
+          join.setAttribute("y1", String(p.y));
+          join.setAttribute("x2", String(next.x));
+          join.setAttribute("y2", String(next.y));
+          join.setAttribute("stroke-width", String(26 * next.scale));
+        }
       });
       frame = requestAnimationFrame(animate);
     };
     const move = (e: PointerEvent) => {
       if (e.pointerType === "touch") return;
+      if ((e.target as Element).closest(".project")) {
+        leave();
+        return;
+      }
       mouse = { x: e.clientX, y: e.clientY };
       lastMove = performance.now();
       idle = false;
@@ -242,6 +260,33 @@ export function GlobalMotion({ menuOpen }: { menuOpen: boolean }) {
       </div>
       {fine && !reduced && !menuOpen && (
         <div ref={trail} className="pointer-trail" aria-hidden="true">
+          <svg className="trail-joins" width="100%" height="100%">
+            <defs>
+              <filter
+                id="trail-goo"
+                x="-10%"
+                y="-10%"
+                width="120%"
+                height="120%"
+              >
+                <feGaussianBlur
+                  in="SourceGraphic"
+                  stdDeviation="6"
+                  result="blur"
+                />
+                <feColorMatrix
+                  in="blur"
+                  type="matrix"
+                  values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 35 -15"
+                  result="goo"
+                />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+              </filter>
+            </defs>
+            {Array.from({ length: 19 }, (_, i) => (
+              <line key={i} stroke="white" strokeLinecap="round" />
+            ))}
+          </svg>
           {Array.from({ length: 20 }, (_, i) => (
             <i key={i} />
           ))}

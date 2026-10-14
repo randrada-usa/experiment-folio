@@ -66,6 +66,15 @@
   z-index: 900;
   mix-blend-mode: difference;
   opacity: 0;
+  filter: url("#trail-goo");
+}
+.trail-joins {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+body:has(.project:hover) .pointer-trail {
+  visibility: hidden;
 }
 .pointer-trail i {
   position: absolute;
