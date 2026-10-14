@@ -52,6 +52,12 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 
 ## Iteration ledger
 
+### 2026-10-14 — Production-preview handoff
+
+- Confirmed the trail work and notes are already committed in `3fd9ec3`; no application changes were needed in this pass. Fresh build, seven tests, and format check pass.
+- Started the production preview at http://127.0.0.1:4173/ and verified it serves the freshly built `index-BWttwDk4.js`. Inspected hero motion, gallery pin/scroll and left-pointer projection, and separate trail circles in the running production page. Gallery wrapper and scroll track retained independent transforms; document overflow=0; captured warning/error log empty.
+- Saved local evidence `artifacts/production-pointer-check.jpg`, restored temporary viewport overrides, and left the production preview available. This is an additional desktop production smoke check, not a new full responsive/cross-browser matrix. Remaining timing, geometry and physical-device limits from Stage9 still apply. No push or deployment performed.
+
 ### 2026-10-13 — Stage 9c trail and regression pass
 
 - Reinspected reference fast pointer relocations: separate tapered circles are visible, with small tail flutter after stopping. Public active cursor implementation confirms 20 circles, 26px base diameter, direct head, 35% retained follower history, 150ms idle threshold, and 0.05-radian/frame idle phase. Implemented these behaviors without introducing a blur/connecting stroke; deterministic staggered phases substitute for reference random phases.

@@ -8,7 +8,7 @@ Target repository: https://github.com/randrada-usa/experiment-folio
 
 Inspection date: 2026-10-09
 
-Implementation comparison updated through2026-10-13. See IMPLEMENTATION_PLAN.md for the per-section evidence and final coverage limits.
+Implementation comparison updated through2026-10-14. See IMPLEMENTATION_PLAN.md for the per-section evidence and final coverage limits.
 
 ## Goal and evidence rules
 
@@ -171,4 +171,4 @@ Status vocabulary: unimplemented; implemented/unverified; verified (specific che
 | S07 footer/global | Reinspected desktop fast moves and idle dots | verified trail adaptation | Now20 separate26px tapered circles, direct head,35% retained follower history,150ms idle flutter. Fast relocation and later live samples checked; hidden for menu/narrow/reduced motion. Deterministic idle phases differ from reference random phases. Continuous path timing remains unverified. |
 | S08 consent       | Observed                                    | intentional difference | No analytics, no unnecessary consent dialog.                                                                                                                                                                                                                                                     |
 
-Cross-browser Safari/Firefox, physical-device touch, precise hover/easing parity and continuous video capture remain gaps. Reference track click was attempted with no movement; local native click seeking is a verified deliberate improvement. Stage9 used the live development preview; the new production build passes but has not had a separate production-browser pass. Every stage's viewport, settings, measurements, evidence, fixes and regressions are recorded in IMPLEMENTATION_PLAN.md. No pixel-identical claim is made.
+Cross-browser Safari/Firefox, physical-device touch, precise hover/easing parity and continuous video capture remain gaps. Reference track click was attempted with no movement; local native click seeking is a verified deliberate improvement. Stage9 used the live development preview, followed by a desktop production-browser smoke check on2026-10-14 (hero, gallery pointer/scroll transforms, circle trail, zero document overflow and no captured warnings/errors). Every stage's viewport, settings, measurements, evidence, fixes and regressions are recorded in IMPLEMENTATION_PLAN.md. No pixel-identical claim is made.
