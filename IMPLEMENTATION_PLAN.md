@@ -52,6 +52,14 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 
 ## Iteration ledger
 
+### 2026-10-14 — Cursor continuity, project hover, and help placement correction
+
+- User clarified that the desired fast trail is continuous and project hover must show only the View project label. Reinspection found the reference parent cursor uses `filter:url(#goo)` (blur6, alpha35/-15). The previous implementation omitted this compositing step. A large automated reference drag still showed separate circles; continuous local connections are an explicit user-requested adaptation, not an exact-reference claim.
+- Added the blending filter and tapered connections between samples so fast sweeps remain continuous. Idle flutter starts only after the samples settle near the pointer, preventing a distant frozen tail. Project hover hides the entire trail immediately (including stationary-pointer hover caused by scrolling), stops its animation on movement inside cards, and reseeds it on exit. Browser observed project:hover=true / trail hidden / View project visible, then hover=false / trail visible / label hidden.
+- Replaced alternating rotated help text with fixed SVG annotations and leader lines based on the reference positions: four staggered rows for perspective/theme/help/smoothing, separate menu/projects labels. Added a dark text outline for readability over artwork. Desktop text rectangles do not overlap;390x844 labels stay in bounds, document overflow=0, decorative trail absent.
+- Observed an actual drag from(900,250) to(150,200): local trail rendered as one continuous taper while its sample coordinates advanced. Reference goo filter confirmed from computed DOM, not inferred from a still. Evidence: `artifacts/project-cursor-only.jpg` and `artifacts/help-label-layout.jpg` (ignored local files). Earlier Stage9 notes describing intentionally separate visible circles are superseded by this correction.
+- Final build/typecheck, seven existing tests and formatting check pass. Rebuilt4173 preview shows corrected help placement; captured warnings/errors empty. Final cropped evidence: `artifacts/help-controls-corrected.jpg`. No push performed.
+
 ### 2026-10-14 — Production-preview handoff
 
 - Confirmed the trail work and notes are already committed in `3fd9ec3`; no application changes were needed in this pass. Fresh build, seven tests, and format check pass.

@@ -1,6 +1,39 @@
 import { scrollToSection, useMotion } from "./motion";
 import { Logo } from "./Logo";
 
+function ControlHint({
+  label,
+  row,
+  compact = false,
+}: {
+  label: string;
+  row: number;
+  compact?: boolean;
+}) {
+  const width = compact ? 80 : 180;
+  const anchor = width - 6;
+  return (
+    <small aria-hidden="true" className="control-hint" style={{ width }}>
+      <svg width={width} height="140" viewBox={`0 0 ${width} 140`}>
+        <path
+          d={`M${anchor - 3} 6 L${anchor} 1 L${anchor + 3} 6 M${anchor} 1 L${anchor} ${Math.max(8, row - 20)} L${anchor - 18} ${row - 5}`}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+        />
+        <text
+          x={compact && row === 72 ? anchor + 8 : anchor - 22}
+          y={row}
+          textAnchor="end"
+          fill="currentColor"
+        >
+          {label}
+        </text>
+      </svg>
+    </small>
+  );
+}
+
 export function Header({
   menuOpen,
   onMenu,
@@ -49,7 +82,7 @@ export function Header({
             }
           >
             <span>⌁</span>
-            <small>↳ perspective</small>
+            <ControlHint label="Toggle 3D" row={18} />
           </button>
         )}
         <button
@@ -59,7 +92,7 @@ export function Header({
           onClick={() => m.setTheme(m.theme === "purple" ? "red" : "purple")}
         >
           <span>◉</span>
-          <small>↳ change the mood</small>
+          <ControlHint label="Toggle theme" row={48} />
         </button>
         <button
           className="control"
@@ -68,7 +101,7 @@ export function Header({
           onClick={() => m.setHints(!m.hints)}
         >
           <span>!</span>
-          <small>↳ a little help</small>
+          <ControlHint label="Toggle hints" row={78} />
         </button>
         {m.fine && (
           <button
@@ -79,7 +112,7 @@ export function Header({
             onClick={() => m.setSmoothing(m.smoothing === "on" ? "off" : "on")}
           >
             <span>≋</span>
-            <small>↳ smooth scrolling</small>
+            <ControlHint label="Toggle smoothness" row={108} />
           </button>
         )}
         <button
@@ -91,7 +124,7 @@ export function Header({
           onClick={onMenu}
         >
           <span>☰</span>
-          <small>↳ explore</small>
+          <ControlHint label="Menu" row={72} compact />
         </button>
         <a
           className="control"
@@ -99,7 +132,7 @@ export function Header({
           href="https://www.devbyrey.me/projects"
         >
           <span>→</span>
-          <small>↳ more work</small>
+          <ControlHint label="Projects" row={108} compact />
         </a>
       </nav>
     </header>

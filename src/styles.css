@@ -176,14 +176,13 @@ em {
 .control small {
   pointer-events: none;
   position: absolute;
-  right: 0;
-  top: 34px;
+  right: 6px;
+  top: 25px;
   white-space: nowrap;
-  transform: rotate(-8deg);
   font:
-    italic 12px "Cascadia Code Variable",
+    11px "Cascadia Code Variable",
     monospace;
-  color: var(--text);
+  color: var(--accent-ink);
   opacity: 0;
   transition: opacity 0.1s;
 }
@@ -192,9 +191,14 @@ em {
 .show-hints .control small {
   opacity: 1;
 }
-.show-hints .control:nth-child(even) small {
-  top: 68px;
-  transform: rotate(8deg);
+.control-hint text {
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+.control-hint svg {
+  overflow: visible;
 }
 .foundation {
   min-height: 110vh;
