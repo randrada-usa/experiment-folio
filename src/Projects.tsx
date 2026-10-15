@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { projects, portfolioUrl } from "./content";
+import { projects } from "./content";
 import type { Project } from "./content";
 import { gsap, ScrollTrigger, useGSAP, useMotion } from "./motion";
 import { bindPointerPerspective } from "./pointer-perspective";
@@ -199,7 +199,7 @@ export function Projects() {
                 className="project"
                 data-project={project.slug}
                 key={project.slug}
-                href={`${portfolioUrl}/projects/${project.slug}`}
+                href={`/projects/#${project.slug}`}
                 onFocus={(e) => revealCard(e.currentTarget)}
                 onPointerEnter={(e) => {
                   moveCursor(e);

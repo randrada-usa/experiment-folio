@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -94,6 +94,15 @@ export function useMotion() {
 
 export function SmoothPage({ children }: { children: ReactNode }) {
   const { smoothing, reduced, fine } = useMotion();
+  const initialAnchorHandled = useRef(false);
+  useEffect(() => {
+    const followHash = () => {
+      const id = decodeURIComponent(location.hash.slice(1));
+      if (id) scrollToSection(id, false, 120);
+    };
+    window.addEventListener("hashchange", followHash);
+    return () => window.removeEventListener("hashchange", followHash);
+  }, []);
   useGSAP(
     () => {
       let smoother: ScrollSmoother | undefined;
@@ -115,7 +124,13 @@ export function SmoothPage({ children }: { children: ReactNode }) {
       }
       let live = true;
       document.fonts.ready.then(() => {
-        if (live) ScrollTrigger.refresh();
+        if (!live) return;
+        ScrollTrigger.refresh();
+        if (!initialAnchorHandled.current) {
+          initialAnchorHandled.current = true;
+          const id = decodeURIComponent(location.hash.slice(1));
+          if (id) scrollToSection(id, false, 120);
+        }
       });
       const refresh = () => ScrollTrigger.refresh();
       window.addEventListener("load", refresh);
@@ -134,7 +149,7 @@ export function SmoothPage({ children }: { children: ReactNode }) {
   );
 }
 
-export function scrollToSection(id: string) {
+export function scrollToSection(id: string, smooth = true, offset = 110) {
   const target = document.getElementById(id);
   if (!target) return;
   // Focus first: ScrollSmoother's focus handler must not override our anchor offset.
@@ -145,16 +160,16 @@ export function scrollToSection(id: string) {
       ? 0
       : Math.max(
           0,
-          target.getBoundingClientRect().top +
-            (smoother?.scrollTop() ?? window.scrollY) -
-            110,
+          (smoother
+            ? smoother.offset(target, "top top")
+            : target.getBoundingClientRect().top + window.scrollY) - offset,
         );
-  if (smoother) smoother.scrollTo(top, true);
+  if (smoother) smoother.scrollTo(top, smooth);
   else
     window.scrollTo({
       top,
       behavior:
-        document.documentElement.dataset.reducedMotion === "true"
+        !smooth || document.documentElement.dataset.reducedMotion === "true"
           ? "instant"
           : "smooth",
     });

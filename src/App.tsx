@@ -9,6 +9,7 @@ import { InquiryProvider } from "./Inquiry";
 import { Menu } from "./Menu";
 import { Footer } from "./Footer";
 import { GlobalMotion } from "./GlobalMotion";
+import { ProjectDetails } from "./ProjectDetails";
 
 export function App() {
   return (
@@ -22,6 +23,9 @@ export function App() {
 
 function Page() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const projectPage = /^\/projects(?:\/|\/index\.html)?$/.test(
+    location.pathname,
+  );
   return (
     <>
       <a
@@ -34,18 +38,32 @@ function Page() {
       >
         Skip to content
       </a>
-      <Header menuOpen={menuOpen} onMenu={() => setMenuOpen(true)} />
+      <Header
+        projectPage={projectPage}
+        menuOpen={menuOpen}
+        onMenu={() => setMenuOpen(true)}
+      />
       <SmoothPage>
         <main id="main" tabIndex={-1}>
-          <Hero />
-          <Projects />
-          <About />
-          <Contact />
+          {projectPage ? (
+            <ProjectDetails />
+          ) : (
+            <>
+              <Hero />
+              <Projects />
+              <About />
+              <Contact />
+            </>
+          )}
         </main>
-        <Footer />
+        <Footer projectPage={projectPage} />
       </SmoothPage>
-      <Menu open={menuOpen} onClose={() => setMenuOpen(false)} />
-      <GlobalMotion menuOpen={menuOpen} />
+      <Menu
+        projectPage={projectPage}
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+      />
+      <GlobalMotion projectPage={projectPage} menuOpen={menuOpen} />
     </>
   );
 }

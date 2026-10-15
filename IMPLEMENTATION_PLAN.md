@@ -52,6 +52,17 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 
 ## Iteration ledger
 
+### 2026-10-15 — Project details expansion (authorized)
+
+- New scope supersedes the initial homepage-only destination decision: implement the reference's long project details page locally with six own projects. Preserve links to existing full case studies. No new dependency required; native page navigation can select `/projects/`, with shared shell and deep-link anchors.
+- Study complete at1440x900,1652x936 and390x844: staggered desktop tools/prose/media, ordinary vertical scrolling, phone media-first order, viewport-controlled video playback, smooth numbered jumps, existing footer. Measurements and intentional adaptations recorded in REFERENCE_SPEC.md.
+- P01: build heading/numbered navigation and page shell, compare browser before case content.
+- P02: implement Wave & Wish with verified existing portfolio facts and owned detail image; compare desktop and phone before remaining cases.
+- P03: extend the checked template to the other five projects; verify anchors, direct links, image loads and phone/tablet flow.
+- P04: integrate homepage cards, menu/header/footer/contact destinations, exit/Back and reduced-motion behavior; build/test, document differences, make focused commits. No push requested for this new work.
+- Outstanding fidelity limit: no owned project recordings or additional gallery views; one genuine still per case. No fake live interactions, invented theme swatches, or borrowed client media.
+- P01/P02 checked before expansion: live local1440x900 heading y141.21 vs reference141.33; case metadata starts322.03 vs322; prose x183 vs183.04; media x464/w934 matches. Corrected narrow tools column from100px to123px after comparison. First imported image initially cached404 during HMR, resolved by reload and confirmed decoded964x542. At390x844 media-first order, two-column metadata, six wrapped jump links and preview rendered with no horizontal overflow. Different copy changes row heights and case height; one still gives a shorter media column than the reference's three videos. Remaining cases/navigation now in progress.
+
 ### 2026-10-14 — Cursor continuity, project hover, and help placement correction
 
 - User clarified that the desired fast trail is continuous and project hover must show only the View project label. Reinspection found the reference parent cursor uses `filter:url(#goo)` (blur6, alpha35/-15). The previous implementation omitted this compositing step. A large automated reference drag still showed separate circles; continuous local connections are an explicit user-requested adaptation, not an exact-reference claim.

@@ -37,18 +37,21 @@ function ControlHint({
 export function Header({
   menuOpen,
   onMenu,
+  projectPage = false,
 }: {
   menuOpen: boolean;
   onMenu: () => void;
+  projectPage?: boolean;
 }) {
   const m = useMotion();
   return (
     <header className={`header ${m.hints ? "show-hints" : ""}`}>
       <a
         className="brand"
-        href="#home"
+        href={projectPage ? "/" : "#home"}
         aria-label="Rey Jane Andrada home"
         onClick={(e) => {
+          if (projectPage) return;
           e.preventDefault();
           scrollToSection("home");
         }}
@@ -63,15 +66,16 @@ export function Header({
       <nav className="header-controls" aria-label="Page controls">
         <a
           className="control contact-control"
-          href="#inquiry"
+          href={projectPage ? "/#inquiry" : "#inquiry"}
           onClick={(e) => {
+            if (projectPage) return;
             e.preventDefault();
             scrollToSection("inquiry");
           }}
         >
           <span>LET’S TALK</span>
         </a>
-        {m.fine && (
+        {m.fine && !projectPage && (
           <button
             className="control"
             aria-label="Toggle 3D perspective"
@@ -128,11 +132,17 @@ export function Header({
         </button>
         <a
           className="control"
-          aria-label="All portfolio projects"
-          href="https://www.devbyrey.me/projects"
+          aria-label={
+            projectPage ? "Contact Rey Andrada" : "All portfolio projects"
+          }
+          href={projectPage ? "/#contact" : "/projects/"}
         >
           <span>→</span>
-          <ControlHint label="Projects" row={108} compact />
+          <ControlHint
+            label={projectPage ? "Contact" : "Projects"}
+            row={108}
+            compact
+          />
         </a>
       </nav>
     </header>

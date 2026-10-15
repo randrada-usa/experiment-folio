@@ -1,10 +1,10 @@
 import { useRef } from "react";
 import { Logo } from "./Logo";
-import { portfolioUrl, socialLinks } from "./content";
+import { socialLinks } from "./content";
 import { gsap, scrollToSection, useGSAP, useMotion } from "./motion";
 import "./footer.css";
 
-export function Footer() {
+export function Footer({ projectPage = false }: { projectPage?: boolean }) {
   const root = useRef<HTMLElement>(null);
   const { fine, reduced, perspective } = useMotion();
   useGSAP(
@@ -71,20 +71,23 @@ export function Footer() {
           <div>
             <h2>Pages</h2>
             <a
-              href="#about"
+              href={projectPage ? "/#about" : "#about"}
               onClick={(e) => {
+                if (projectPage) return;
                 e.preventDefault();
                 scrollToSection("about");
               }}
             >
               About<span>→</span>
             </a>
-            <a href={`${portfolioUrl}/projects`}>
-              Projects<span>→</span>
+            <a href={projectPage ? "/" : "/projects/"}>
+              {projectPage ? "Home" : "Projects"}
+              <span>→</span>
             </a>
             <a
-              href="#contact"
+              href={projectPage ? "/#contact" : "#contact"}
               onClick={(e) => {
+                if (projectPage) return;
                 e.preventDefault();
                 scrollToSection("contact");
               }}
@@ -104,8 +107,10 @@ export function Footer() {
         </nav>
         <a
           className="footer-art footer-arrow"
-          href={`${portfolioUrl}/projects`}
-          aria-label="Explore all projects"
+          href={projectPage ? "/#contact" : "/projects/"}
+          aria-label={
+            projectPage ? "Contact Rey Andrada" : "Explore all projects"
+          }
         >
           <span className="tilt-art" aria-hidden="true">
             ↗
@@ -114,8 +119,12 @@ export function Footer() {
       </div>
       <a
         className="footer-marquee"
-        href={`${portfolioUrl}/projects`}
-        aria-label="Explore Rey Andrada’s projects"
+        href={projectPage ? "/#contact" : "/projects/"}
+        aria-label={
+          projectPage
+            ? "Discuss a project with Rey Andrada"
+            : "Explore Rey Andrada’s projects"
+        }
       >
         <div className="footer-marquee-track" aria-hidden="true">
           {[0, 1].map((i) => (
@@ -125,11 +134,11 @@ export function Footer() {
       </a>
       <div className="footer-utility">
         <a
-          href="#home"
+          href={projectPage ? "#main" : "#home"}
           aria-label="Return to top"
           onClick={(e) => {
             e.preventDefault();
-            scrollToSection("home");
+            scrollToSection(projectPage ? "main" : "home");
           }}
         >
           <Logo />
@@ -144,8 +153,11 @@ export function Footer() {
             </a>
           </span>
         </p>
-        <a className="footer-next" href={`${portfolioUrl}/projects`}>
-          All projects <span>→</span>
+        <a
+          className="footer-next"
+          href={projectPage ? "/#contact" : "/projects/"}
+        >
+          {projectPage ? "Let’s connect" : "All projects"} <span>→</span>
           <i className="continuation-fill" aria-hidden="true" />
         </a>
       </div>

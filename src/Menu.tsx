@@ -8,9 +8,11 @@ import { Logo } from "./Logo";
 export function Menu({
   open,
   onClose,
+  projectPage = false,
 }: {
   open: boolean;
   onClose: () => void;
+  projectPage?: boolean;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const panel = useRef<HTMLDivElement>(null);
@@ -142,13 +144,34 @@ export function Menu({
           </div>
           <nav className="menu-links" aria-label="Menu navigation">
             <div>
-              {["About", "Projects", "Contact"].map((label) => (
+              {[
+                ...(projectPage ? ["Home"] : []),
+                "About",
+                "Projects",
+                "Contact",
+              ].map((label) => (
                 <a
                   key={label}
-                  href={`#${label.toLowerCase()}`}
+                  href={
+                    label === "Projects"
+                      ? "/projects/"
+                      : label === "Home"
+                        ? "/"
+                        : `${projectPage ? "/" : ""}#${label.toLowerCase()}`
+                  }
                   onClick={(e) => {
+                    if (
+                      label === "Home" ||
+                      (label === "Projects" && !projectPage) ||
+                      (projectPage && label !== "Projects")
+                    )
+                      return;
                     e.preventDefault();
-                    close(() => scrollToSection(label.toLowerCase()));
+                    close(() =>
+                      scrollToSection(
+                        label === "Projects" ? "main" : label.toLowerCase(),
+                      ),
+                    );
                   }}
                 >
                   {label}

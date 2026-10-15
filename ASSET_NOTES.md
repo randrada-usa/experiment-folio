@@ -1,6 +1,7 @@
 # Asset provenance
 
 - Portrait and project previews: existing public assets from the user's CleanPortfolio checkout; source checkout unchanged.
+- Project detail previews: six `*-detail-1920.webp` files copied unchanged from `C:\dev\CleanPortfolio\public\assets\projects` on2026-10-15. The filename is a derivative target, not a guarantee of1920px native resolution; source images are not upscaled. Each case uses its one available public image with the existing800w derivative for narrow layouts. No reference client recordings or fabricated additional views were added.
 - `public/assets/brand/rj-red.png`: user's supplied RJ logo, copied unchanged. Website CSS frames its central artwork without changing the source pixels.
 - `public/assets/brand/rj-purple.png`: purple colorway produced with the built-in image-generation editing tool on2026-10-10, using the supplied logo as the edit target. Inspected for preserved lettering, composition and four accent rays. Generated raster is a close visual colorway, not a pixel-identical vector master.
 - Generated purple prompt: “Use case: precise-object-edit. Asset type: alternate-theme portfolio logo. Input image 1 is the edit target. Change ONLY the bright red R and the four red accent rays to deep vivid purple #5135CD. Keep the white J, black background, exact RJ letter shapes, tilted composition, edges, relative positions, all proportions, and square canvas framing unchanged. No extra text or objects. This is a faithful colorway of the supplied logo, not a redesign.”

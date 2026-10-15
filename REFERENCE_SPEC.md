@@ -89,6 +89,19 @@ The initial diagnostic screenshots are outside the repository in the task's visu
 - Preferences modal with necessary/analytics toggles. Acknowledgement persists across reload.
 - No tracking is included in this build, so omit the unnecessary consent UI. Intentional difference, not an unimplemented feature.
 
+## Project details expansion — 2026-10-15
+
+User approved studying and implementing the reference project details. Live inspection of `/projects/` shows one long page containing all four cases, not separate detail routes. Adaptation will contain the existing six portfolio projects with numbered anchors; existing full case-study links remain available.
+
+- Desktop baseline1440x900: content starts at y104, inset42; 32px Selected projects heading at y141, numbered links aligned right, divider and Project1 label. First case starts y322 after100px top spacing. Left column380px, gap42px, right media934px. Within the left column: narrow tools123px, gap18px, prose239px. Tools start260px below metadata; prose starts120px below metadata. Text16px, tools14px, muted gray, dotted separators and30% paragraph first-line indent. Four equal metadata columns sit above right-aligned media_01 labels and full-width recordings.
+- Ordinary vertical scrolling: no pinned case columns and no pointer perspective on media. Live recordings advance on screen and pause after scrolling offscreen; they are not embedded interactive websites. First case has three recordings; later cases repeat the structure with three or four. Footer follows the final case.
+- Numbered anchors smoothly scroll; sampled Project3 settled approximately120px below viewport top. Early screenshots may precede the scroll animation settling. Reference first two section IDs are reversed relative to display order; do not reproduce that inconsistency. No hash update was observed after its scripted jump.
+- At<=890px tools/prose stack within the left column. At<=720px media comes first, followed by tools then prose, with70px between media and details and80px case top spacing. At390px inset15.6px, heading32px; reference's four metadata columns and last jump label become cramped. Local metadata will use two columns on small phones and nonbreaking numbered links as deliberate readability improvements.
+- Theme swatches expose codes with opacity transitions; no verified portfolio palettes are supplied, so do not invent color codes. Replace that region with factual role/team information. No additional media hover action was observed. Shared theme, menu, smooth scrolling, cursor, progress and footer remain.
+- Available owned assets: one genuine preview per project, with1600/1920 detail variants in CleanPortfolio. No additional gallery or recording is listed. Use one still without fabricating extra views or motion, and preserve the public case-study destination. Do not copy reference client assets or unsupported metrics.
+
+Comparison stages: P01 heading/navigation and shared page shell; P02 first case desktop/mobile; P03 remaining cases, anchor destinations and media; P04 footer/navigation/regressions. Each must be browser checked before expanding. Exact video parity is blocked by missing owned recordings; physical-device and other-browser verification remain outside current evidence.
+
 ## 2. Motion inventory
 
 | ID  | Effect              | Trigger / progression                                            | Evidence and target                                                                                                               |

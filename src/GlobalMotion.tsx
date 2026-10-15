@@ -11,7 +11,13 @@ import {
 } from "./motion";
 import "./global-motion.css";
 
-export function GlobalMotion({ menuOpen }: { menuOpen: boolean }) {
+export function GlobalMotion({
+  menuOpen,
+  projectPage = false,
+}: {
+  menuOpen: boolean;
+  projectPage?: boolean;
+}) {
   const { fine, reduced } = useMotion();
   const range = useRef<HTMLInputElement>(null);
   const progress = useRef<HTMLDivElement>(null);
@@ -67,7 +73,11 @@ export function GlobalMotion({ menuOpen }: { menuOpen: boolean }) {
         !anchor ||
         anchor.target ||
         anchor.hasAttribute("download") ||
-        !anchor.href.startsWith(`${portfolioUrl}/`)
+        !(
+          anchor.href.startsWith(`${portfolioUrl}/`) ||
+          (anchor.origin === location.origin &&
+            anchor.pathname !== location.pathname)
+        )
       )
         return;
       event.preventDefault();
@@ -143,7 +153,8 @@ export function GlobalMotion({ menuOpen }: { menuOpen: boolean }) {
       draw();
       clearTimeout(idle);
       idle = window.setTimeout(reset, 800);
-      if (accumulated >= 6000) go.current(`${portfolioUrl}/projects`);
+      if (accumulated >= 6000)
+        go.current(projectPage ? "/#contact" : "/projects/");
     };
     window.addEventListener("wheel", wheel, { passive: true });
     return () => {
@@ -151,7 +162,7 @@ export function GlobalMotion({ menuOpen }: { menuOpen: boolean }) {
       clearTimeout(idle);
       reset();
     };
-  }, [fine, reduced, menuOpen]);
+  }, [fine, reduced, menuOpen, projectPage]);
 
   useEffect(() => {
     if (!fine || reduced || menuOpen || !trail.current) return;
@@ -232,13 +243,14 @@ export function GlobalMotion({ menuOpen }: { menuOpen: boolean }) {
     <>
       <div className="page-progress" ref={progress} hidden={menuOpen}>
         <a
-          href="#contact"
+          href={projectPage ? "/#contact" : "#contact"}
           onClick={(e) => {
+            if (projectPage) return;
             e.preventDefault();
             scrollToSection("contact");
           }}
         >
-          Skip <span>→</span>
+          {projectPage ? "Connect" : "Skip"} <span>→</span>
           <span className="sr-only"> to contact</span>
         </a>
         <input
