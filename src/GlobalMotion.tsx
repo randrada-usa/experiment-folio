@@ -29,6 +29,8 @@ export function GlobalMotion({
   useEffect(() => {
     const reset = () => {
       navigating.current = false;
+      // Back/forward cache can restore a still-running exit tween.
+      gsap.killTweensOf("#root");
       gsap.set("#root", { clearProps: "opacity" });
       timers.current.forEach(clearTimeout);
       timers.current = [];
