@@ -2,6 +2,19 @@
 
 ## Approved direction
 
+2026-10-16 update: replace the scrolling homepage contact form with a two-column certificate preview (ten cards), keep contact inquiry in the menu, and correct footer link hover/marquee behavior. Full certificate collection/details remain on the existing portfolio.
+
+### 2026-10-16 — Certificate and footer iteration completed
+
+1. **Reinspect:** exercised Kala's pinned introduction/form scroll and footer pointer hover; compared desktop 1440×900 and phone 390×844 layouts. Recorded measured row styling in REFERENCE_SPEC.md.
+2. **Certificates:** copied ten unchanged public certificate images from CleanPortfolio, preserved source array ordering, replaced the homepage form, updated heading/copy and both full-collection CTAs. Kept the menu form and routed “Let’s Talk” there; preserved legacy inquiry hash handling.
+3. **Certificate verification:** 10 cards/10 loaded assets, two columns at 1652/1440 desktop and 390/320 phone widths; phone overflow false. Desktop intro top remained ≈74.9px while grid moved; fresh 1440×900 `#certificates` load put collection top≈120.2px and intro≈72.2px. Reduced-motion mode produced zero pins and marquee animation `none`. Full-collection navigation opened the existing 27-item page and Back restored a visible local page. Menu opens with one inquiry form.
+4. **Footer:** matched bright dashed rows, row spacing, gray hover fill, italic accent text, horizontal inset and appropriately sized SVG arrows. Removed pointer-hover marquee pause; retained keyboard-focus pause and reduced-motion behavior. Actual hover computed `rgb(223,223,223)` background, `rgb(235,0,4)` text and `10px` padding. Hovered marquee remained running across two changing transform samples. Compared rendered desktop/phone groups with Kala; own three social destinations and branding intentionally differ.
+5. **Checks:** production build/typecheck passed; eight tests passed (including ten unique certificate slugs and existing asset files); formatting checked. Existing preview was restarted after the browser/session restart. No dependencies installed, no source-portfolio changes, no message submitted, no deployment or push.
+6. **Regressions/differences:** no overflow or missing assets observed at checked sizes. Certificates deliberately keep two columns even on narrow phones; detail links provide larger originals. Header/menu/social contact access retained. Exact animation frame timing and physical-device/cross-browser behavior remain unchecked. Existing broader known limitations still apply.
+
+Focused commits: certificate content/assets/contact access first; footer behavior second; this verification ledger records both. See Git history for hashes.
+
 2026-10-09: user approved starting the build after the reference plan. Use own portfolio content from the beginning; homepage and overlays only, link existing portfolio pages. Maintain focused commits. No push/deployment requested. Target repository was verified empty and cloned into supplied workspace C:\dev\beyblade; original CleanPortfolio checkout is read-only input.
 
 ## Non-negotiable section loop

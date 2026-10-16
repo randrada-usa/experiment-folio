@@ -8,7 +8,31 @@ Target repository: https://github.com/randrada-usa/experiment-folio
 
 Inspection date: 2026-10-09
 
-Implementation comparison updated through2026-10-14. See IMPLEMENTATION_PLAN.md for the per-section evidence and final coverage limits.
+Implementation comparison updated through 2026-10-16. See IMPLEMENTATION_PLAN.md for the per-section evidence and final coverage limits.
+
+## 2026-10-16 — Certificate adaptation and footer correction
+
+User-directed change supersedes the homepage form portion of S05: retain the offset scrolling composition and pinned introduction, but replace its form with ten certificate previews in two columns. The heading is “Certificates”; the About CTA and collection footer say “View all certs” and link to the existing full collection. Certificate detail links also use the existing portfolio. The menu retains the inquiry form, opened by “Let’s Talk”; `#contact` still reaches the section's public social links, and `#certificates` reaches the preview grid. Old `#inquiry` links open the menu.
+
+Fresh reference observations:
+
+- Desktop contact introduction remains fixed while the right-hand form moves upward through it. The certificate adaptation reuses this behavior, not the reference form fields/content.
+- Footer inspected at 1440×900 and 390×844, plus the initial 1652px desktop viewport. Desktop link labels and group headings compute to 14px. Rows have 10px vertical padding and approximately 4px separation, with bright dashed dividers. The reference arrow is an approximately 0.8em SVG, not a small font arrow.
+- Actual pointer hover on Projects: background `#dfdfdf`, italic text `#eb0004`, padding changes from `10px 0` to `10px`. Computed transition settings: background 140ms, color 180ms, padding 100ms. Observed the before/after interaction; exact frame-by-frame easing was not measured.
+- Local footer now mirrors those row states and uses a simple original SVG arrow. Own Email/GitHub/LinkedIn destinations remain; the reference's extra social accounts are not fabricated. Logo and right-hand artwork remain intentional portfolio adaptations.
+
+Comparison checklist for this iteration:
+
+- [x] Exactly ten source-backed certificate cards; all ten images decoded on desktop.
+- [x] Two columns at desktop, 390px and 320px; no horizontal document overflow on the checked phone sizes.
+- [x] Pinned intro stays around 8vh while certificate cards move; reverse/forward scrolling inspected. Static reduced-motion layout has zero pins.
+- [x] Full collection link opened the live page showing 27 certifications; browser Back returned to a visible local page.
+- [x] “Let’s Talk” opens the menu containing its single inquiry form.
+- [x] Local footer pointer hover produces gray fill, italic red label and inset arrow; desktop and phone render inspected against the corresponding reference sizes.
+- [x] Hovered marquee stays `running`; successive transform samples changed from x≈−70 to x≈−2146. Keyboard-focus pause is deliberately retained, and reduced motion disables the animation.
+- [ ] Physical touch, Safari/Firefox, exact hover transition frame timing, and every individual external certificate-detail destination remain unverified.
+
+Evidence: `artifacts/certificates-desktop.jpg`, `artifacts/certificates-phone.jpg`, `artifacts/footer-hover-certificates.jpg` (ignored local screenshots). Certificates are new user-directed content, not an element claimed to exist on Kala.
 
 ## Goal and evidence rules
 
