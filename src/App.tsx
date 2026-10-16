@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "./Header";
 import { MotionProvider, SmoothPage, scrollToSection } from "./motion";
 import { Hero } from "./Hero";
@@ -23,6 +23,15 @@ export function App() {
 
 function Page() {
   const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    // Preserve old links to the former homepage inquiry form.
+    const openInquiry = () => {
+      if (location.hash === "#inquiry") setMenuOpen(true);
+    };
+    openInquiry();
+    window.addEventListener("hashchange", openInquiry);
+    return () => window.removeEventListener("hashchange", openInquiry);
+  }, []);
   const projectPage = /^\/projects(?:\/|\/index\.html)?$/.test(
     location.pathname,
   );

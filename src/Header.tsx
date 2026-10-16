@@ -64,17 +64,16 @@ export function Header({
         </span>
       </a>
       <nav className="header-controls" aria-label="Page controls">
-        <a
+        <button
           className="control contact-control"
-          href={projectPage ? "/#inquiry" : "#inquiry"}
-          onClick={(e) => {
-            if (projectPage) return;
-            e.preventDefault();
-            scrollToSection("inquiry");
-          }}
+          type="button"
+          aria-haspopup="dialog"
+          aria-controls="navigation-menu"
+          aria-expanded={menuOpen}
+          onClick={onMenu}
         >
           <span>LET’S TALK</span>
-        </a>
+        </button>
         {m.fine && !projectPage && (
           <button
             className="control"

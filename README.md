@@ -25,15 +25,16 @@ npm run format:check
 ## Features
 
 - Theme-aware supplied red/purple RJ artwork, layered portrait hero, pointer perspective and CTA ticker.
-- Six-project desktop pinned gallery, native mobile stack, one-time word reveals, responsive contact pin.
+- Six-project desktop pinned gallery, native mobile stack, one-time word reveals, and a pinned certificate introduction beside a two-column, ten-certificate preview. Both “View all certs” links open the existing full portfolio collection.
 - Local `/projects/` page with numbered project anchors, staggered tools/story/media columns, and media-first phone layout. Each case retains a link to its full existing portfolio case study. The build emits both `dist/index.html` and `dist/projects/index.html`, so direct project links do not depend on a hosting rewrite.
-- Independently scrollable accessible menu, shared in-memory inquiry form, native validation, email-draft preview and copy fallback. **No message is sent by the site.** Reload clears drafts; theme, perspective, smoothing and motion preferences persist locally.
+- Independently scrollable accessible menu with the inquiry form, native validation, email-draft preview and copy fallback. “Let’s Talk” opens this menu; the former homepage form is now certificates. **No message is sent by the site.** Reload clears drafts; theme, perspective, smoothing and motion preferences persist locally.
 - Footer tilt/marquee, keyboard-accessible progress control, pointer trail and page exit fade. Continued downward wheel at the desktop homepage end opens the local projects page after6000px of accumulated input; the project page continues to homepage contact.800ms idle resets progress.
 - Device reduced-motion preference and menu override disable decorative motion, smooth scrolling, pins, cursors and automatic continuation. Narrow screens and coarse pointers never auto-continue.
 
 ## Editing
 
 - `src/content.ts`: portfolio links and project summaries/media. `src/project-studies.ts`: local detail-page copy adapted from the existing portfolio. Full original case studies remain on `www.devbyrey.me`.
+- `src/certificates.ts`: ten homepage certificate previews and their existing detail-page slugs. Their images live in `public/assets/certs/`.
 - `src/Logo.tsx` and `public/assets/brand/`: supplied red logo and generated purple colorway. CSS frames the original square canvases without modifying their pixels.
 - `src/motion.tsx`: shared GSAP lifecycle and preferences. `src/GlobalMotion.tsx`: progress, pointer and navigation behavior.
 - Section components and their CSS are separate. Reinspect reference and test the corresponding local section before recording a match or moving on.

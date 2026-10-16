@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import { socialLinks } from "./content";
-import { InquiryForm } from "./Inquiry";
+import { portfolioUrl, socialLinks } from "./content";
+import { featuredCertificates } from "./certificates";
 import { gsap, ScrollTrigger, useGSAP, useMotion } from "./motion";
 import "./contact.css";
 
@@ -27,7 +27,7 @@ export function Contact() {
           id: "contact-pin",
           trigger: ".contact-intro",
           start: "top 8%",
-          endTrigger: ".contact .inquiry-form",
+          endTrigger: ".certificate-collection",
           end: "bottom 80%",
           pin: true,
           pinSpacing: false,
@@ -47,7 +47,7 @@ export function Contact() {
       aria-labelledby="contact-heading"
     >
       <h2 id="contact-heading" className="contact-heading">
-        <span>Get</span> <span>in</span> <span>touch.</span>
+        <span>Certificates</span>
       </h2>
       <div className="contact-intro">
         <div className="contact-name">
@@ -56,9 +56,10 @@ export function Contact() {
           Andrada<span>Backend-focused developer.</span>
         </div>
         <p className="contact-copy">
-          Have a project, an opportunity, or an idea worth exploring?{" "}
-          <span className="accent">I’d love to hear about it.</span> Find me on
-          the links below or start a conversation here.
+          Learning is part of how I build. These certificates trace my work
+          across data, development, and AI—{" "}
+          <span className="accent">a foundation I keep growing.</span> Explore
+          ten highlights here, or browse the full collection.
         </p>
         <ul className="social-list">
           {socialLinks.map((s) => (
@@ -71,7 +72,39 @@ export function Contact() {
           ))}
         </ul>
       </div>
-      <InquiryForm instance="contact" />
+      <div className="certificate-collection" id="certificates" tabIndex={-1}>
+        <p className="certificate-count">[ 10 SELECTED CERTIFICATES ]</p>
+        <ul className="certificate-grid">
+          {featuredCertificates.map((certificate) => (
+            <li key={certificate.slug}>
+              <a
+                className="certificate-card"
+                href={`${portfolioUrl}/certifications/${certificate.slug}`}
+              >
+                <div className="certificate-image">
+                  <img
+                    src={certificate.image}
+                    alt={`${certificate.title} certificate`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <p className="certificate-issuer">{certificate.issuer}</p>
+                <h3>
+                  {certificate.title}
+                  <span aria-hidden="true">↗</span>
+                </h3>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a
+          className="outline-link certificate-all"
+          href={`${portfolioUrl}/certifications`}
+        >
+          View all certs <span aria-hidden="true">↗</span>
+        </a>
+      </div>
     </section>
   );
 }

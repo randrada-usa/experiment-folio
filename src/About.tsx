@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import { scrollToSection, useMotion } from "./motion";
+import { useMotion } from "./motion";
+import { portfolioUrl } from "./content";
 import "./about.css";
 
 function Words({ parts }: { parts: Array<[string, boolean?]> }) {
@@ -91,15 +92,8 @@ export function About() {
           />
         </p>
       </div>
-      <a
-        className="outline-link"
-        href="#contact"
-        onClick={(e) => {
-          e.preventDefault();
-          scrollToSection("contact");
-        }}
-      >
-        Let’s build something <span>↗</span>
+      <a className="outline-link" href={`${portfolioUrl}/certifications`}>
+        View all certs <span>↗</span>
       </a>
     </section>
   );

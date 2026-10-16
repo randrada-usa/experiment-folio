@@ -1,5 +1,7 @@
 # Asset provenance
 
+- Certificate previews: ten unchanged WebP files copied from `C:\dev\CleanPortfolio\public\assets\certs` on 2026-10-16. Titles, issuers, and ordering follow the first ten entries in that checkout's `app/data/site.ts`; no credentials or new certificate claims were invented. Full-resolution details and the complete collection link to the existing public portfolio.
+
 - Portrait and project previews: existing public assets from the user's CleanPortfolio checkout; source checkout unchanged.
 - Project detail previews: six `*-detail-1920.webp` files copied unchanged from `C:\dev\CleanPortfolio\public\assets\projects` on2026-10-15. The filename is a derivative target, not a guarantee of1920px native resolution; source images are not upscaled. Each case uses its one available public image with the existing800w derivative for narrow layouts. No reference client recordings or fabricated additional views were added.
 - `public/assets/brand/rj-red.png`: user's supplied RJ logo, copied unchanged. Website CSS frames its central artwork without changing the source pixels.
