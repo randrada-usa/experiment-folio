@@ -4,6 +4,19 @@ import { socialLinks } from "./content";
 import { gsap, scrollToSection, useGSAP, useMotion } from "./motion";
 import "./footer.css";
 
+function LinkArrow() {
+  return (
+    <svg
+      className="footer-link-arrow"
+      viewBox="0 0 20 20"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path d="M1 10h17M10 2l8 8-8 8" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  );
+}
+
 export function Footer({ projectPage = false }: { projectPage?: boolean }) {
   const root = useRef<HTMLElement>(null);
   const { fine, reduced, perspective } = useMotion();
@@ -78,11 +91,12 @@ export function Footer({ projectPage = false }: { projectPage?: boolean }) {
                 scrollToSection("about");
               }}
             >
-              About<span>→</span>
+              About
+              <LinkArrow />
             </a>
             <a href={projectPage ? "/" : "/projects/"}>
               {projectPage ? "Home" : "Projects"}
-              <span>→</span>
+              <LinkArrow />
             </a>
             <a
               href={projectPage ? "/#contact" : "#contact"}
@@ -92,7 +106,8 @@ export function Footer({ projectPage = false }: { projectPage?: boolean }) {
                 scrollToSection("contact");
               }}
             >
-              Contact<span>→</span>
+              Contact
+              <LinkArrow />
             </a>
           </div>
           <div>
@@ -100,7 +115,7 @@ export function Footer({ projectPage = false }: { projectPage?: boolean }) {
             {socialLinks.map((link) => (
               <a key={link.label} href={link.href}>
                 {link.label}
-                <span>→</span>
+                <LinkArrow />
               </a>
             ))}
           </div>

@@ -34,11 +34,11 @@
 }
 .footer-links {
   border-inline: 1px solid var(--line);
-  padding: 30px 42px;
+  padding: 42px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 30px;
+  justify-content: flex-start;
+  gap: 42px;
   font-size: 14px;
 }
 .footer-links h2 {
@@ -48,13 +48,32 @@
 }
 .footer-links a {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 24px;
-  border-bottom: 1px dashed var(--line);
-  padding: 12px 0;
+  border-bottom: 1px dashed var(--text);
+  margin-top: 4px;
+  padding: 10px 0;
+  line-height: 1.15;
+  transition:
+    background-color 0.14s,
+    color 0.18s,
+    padding 0.1s;
 }
-.footer-links a span {
+.footer-links a:is(:hover, :focus-visible) {
+  background: var(--text);
+  color: var(--accent);
+  font-style: italic;
+  padding-inline: 10px;
+}
+.footer-link-arrow {
   color: var(--accent-ink);
+  width: 0.8em;
+  height: 0.8em;
+  flex-shrink: 0;
+}
+.footer-links a:is(:hover, :focus-visible) .footer-link-arrow {
+  color: var(--accent);
 }
 .footer-arrow span {
   font-size: clamp(100px, 22vw, 350px);
@@ -86,7 +105,6 @@
 .footer-marquee:hover {
   color: var(--text);
 }
-.footer-marquee:hover span,
 .footer-marquee:focus-visible span {
   animation-play-state: paused;
 }
