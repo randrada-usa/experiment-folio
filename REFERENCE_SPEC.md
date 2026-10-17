@@ -37,6 +37,7 @@ This section records a fresh inspection of Rey's existing certificate detail pag
 - [x] Route/scope decision: one local collection/detail page for all owned certificates, with search and category filters; source currently lists 27.
 - [x] Reconciled 27 source records, 27 matching images and five category labels. Original metadata/order preserved; intrinsic image sizes recorded for layout stability.
 - [ ] Test combined title/issuer/description search and category filtering, result count, empty state, reset, keyboard/touch operation, focus retention and direct hash loads under filtering.
+  - C2 browser evidence: issuer search 5 results; combined category 1; empty state 0; reset 27; phone category 2; keyboard detail focus and Back-restored filters verified. Final full matrix pending. Search/filter UI is an original adaptation.
 - [ ] Reinspect source detail at matching desktop/phone viewports in motion, including loader/entrance, Back, related-item hover, and reduced-motion behavior; distinguish observed behavior from the local creative adaptation.
 - [ ] Verify title, issuer, category, year, description, slug and image against the existing portfolio for every included certificate; confirm no missing assets or fabricated fields.
 - [ ] Compare each implemented layout stage against source content hierarchy and against the local project-detail design at 1440×900, 390×844 and the responsive transition width. First detail checked at desktop/phone: split/stacked metadata, uncropped loaded image, no overflow; remaining stages and breakpoint pending.

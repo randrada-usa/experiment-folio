@@ -351,3 +351,28 @@ export const certificationCategories: CertificationCategory[] = [
   "Hackathons & Events",
 ];
 export const featuredCertificates = certificates.slice(0, 10);
+
+export function filterCertificates(query: string, category = "All") {
+  const terms = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+  return certificates.filter((certificate) => {
+    const text =
+      `${certificate.title} ${certificate.issuer} ${certificate.description}`.toLocaleLowerCase();
+    return (
+      (category === "All" || certificate.category === category) &&
+      terms.every((term) => text.includes(term))
+    );
+  });
+}
+
+export function certificateFilters(search: string) {
+  const params = new URLSearchParams(search);
+  const category = params.get("category") ?? "All";
+  return {
+    query: params.get("q") ?? "",
+    category: certificationCategories.includes(
+      category as CertificationCategory,
+    )
+      ? category
+      : "All",
+  };
+}
