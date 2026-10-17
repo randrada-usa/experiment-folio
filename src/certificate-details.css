@@ -1,6 +1,9 @@
 .certificate-details {
   padding: 138px var(--inset) 0;
 }
+.cert-intro:focus {
+  outline: none;
+}
 .cert-back,
 .cert-eyebrow {
   font-size: 12px;
@@ -215,14 +218,14 @@
     font-size: 14px;
   }
   .cert-search-field input {
-    font-size: 14px;
+    font-size: 16px;
   }
   .cert-filters {
     gap: 6px;
   }
   .cert-filters button {
     padding: 10px;
-    font-size: 10px;
+    font-size: 12px;
     gap: 8px;
   }
   .cert-result-summary {

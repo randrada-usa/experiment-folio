@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { useMotion } from "./motion";
-import { portfolioUrl } from "./content";
 import "./about.css";
 
 function Words({ parts }: { parts: Array<[string, boolean?]> }) {
@@ -92,7 +91,7 @@ export function About() {
           />
         </p>
       </div>
-      <a className="outline-link" href={`${portfolioUrl}/certifications`}>
+      <a className="outline-link" href="/certifications/">
         View all certs <span>↗</span>
       </a>
     </section>

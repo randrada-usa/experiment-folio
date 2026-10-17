@@ -1,3 +1,5 @@
+import type { PageKind } from "./pages";
+import { nextPage, pageNavigation } from "./pages";
 import { useRef } from "react";
 import { Logo } from "./Logo";
 import { socialLinks } from "./content";
@@ -17,7 +19,9 @@ function LinkArrow() {
   );
 }
 
-export function Footer({ projectPage = false }: { projectPage?: boolean }) {
+export function Footer({ page = "home" }: { page?: PageKind }) {
+  const innerPage = page !== "home";
+  const next = nextPage[page];
   const root = useRef<HTMLElement>(null);
   const { fine, reduced, perspective } = useMotion();
   useGSAP(
@@ -83,32 +87,20 @@ export function Footer({ projectPage = false }: { projectPage?: boolean }) {
         <nav className="footer-links" aria-label="Footer navigation">
           <div>
             <h2>Pages</h2>
-            <a
-              href={projectPage ? "/#about" : "#about"}
-              onClick={(e) => {
-                if (projectPage) return;
-                e.preventDefault();
-                scrollToSection("about");
-              }}
-            >
-              About
-              <LinkArrow />
-            </a>
-            <a href={projectPage ? "/" : "/projects/"}>
-              {projectPage ? "Home" : "Projects"}
-              <LinkArrow />
-            </a>
-            <a
-              href={projectPage ? "/#contact" : "#contact"}
-              onClick={(e) => {
-                if (projectPage) return;
-                e.preventDefault();
-                scrollToSection("contact");
-              }}
-            >
-              Contact
-              <LinkArrow />
-            </a>
+            {pageNavigation(page).map(({ label, href, section }) => (
+              <a
+                key={label}
+                href={href}
+                onClick={(event) => {
+                  if (!section) return;
+                  event.preventDefault();
+                  scrollToSection(section);
+                }}
+              >
+                {label}
+                <LinkArrow />
+              </a>
+            ))}
           </div>
           <div>
             <h2>Socials</h2>
@@ -122,10 +114,8 @@ export function Footer({ projectPage = false }: { projectPage?: boolean }) {
         </nav>
         <a
           className="footer-art footer-arrow"
-          href={projectPage ? "/#contact" : "/projects/"}
-          aria-label={
-            projectPage ? "Contact Rey Andrada" : "Explore all projects"
-          }
+          href={next.href}
+          aria-label={next.description}
         >
           <span className="tilt-art" aria-hidden="true">
             ↗
@@ -134,12 +124,8 @@ export function Footer({ projectPage = false }: { projectPage?: boolean }) {
       </div>
       <a
         className="footer-marquee"
-        href={projectPage ? "/#contact" : "/projects/"}
-        aria-label={
-          projectPage
-            ? "Discuss a project with Rey Andrada"
-            : "Explore Rey Andrada’s projects"
-        }
+        href={next.href}
+        aria-label={next.description}
       >
         <div className="footer-marquee-track" aria-hidden="true">
           {[0, 1].map((i) => (
@@ -149,11 +135,11 @@ export function Footer({ projectPage = false }: { projectPage?: boolean }) {
       </a>
       <div className="footer-utility">
         <a
-          href={projectPage ? "#main" : "#home"}
+          href={innerPage ? "#main" : "#home"}
           aria-label="Return to top"
           onClick={(e) => {
             e.preventDefault();
-            scrollToSection(projectPage ? "main" : "home");
+            scrollToSection(innerPage ? "main" : "home");
           }}
         >
           <Logo />
@@ -168,11 +154,8 @@ export function Footer({ projectPage = false }: { projectPage?: boolean }) {
             </a>
           </span>
         </p>
-        <a
-          className="footer-next"
-          href={projectPage ? "/#contact" : "/projects/"}
-        >
-          {projectPage ? "Let’s connect" : "All projects"} <span>→</span>
+        <a className="footer-next" href={next.href}>
+          {next.footerLabel} <span>→</span>
           <i className="continuation-fill" aria-hidden="true" />
         </a>
       </div>

@@ -11,6 +11,7 @@ import { Footer } from "./Footer";
 import { GlobalMotion } from "./GlobalMotion";
 import { ProjectDetails } from "./ProjectDetails";
 import { CertificateDetails } from "./CertificateDetails";
+import { getPageKind } from "./pages";
 
 export function App() {
   return (
@@ -33,13 +34,7 @@ function Page() {
     window.addEventListener("hashchange", openInquiry);
     return () => window.removeEventListener("hashchange", openInquiry);
   }, []);
-  const projectPage = /^\/projects(?:\/|\/index\.html)?$/.test(
-    location.pathname,
-  );
-  const certificatePage = /^\/certifications(?:\/|\/index\.html)?$/.test(
-    location.pathname,
-  );
-  const innerPage = projectPage || certificatePage;
+  const page = getPageKind(location.pathname);
   return (
     <>
       <a
@@ -53,15 +48,15 @@ function Page() {
         Skip to content
       </a>
       <Header
-        projectPage={innerPage}
+        page={page}
         menuOpen={menuOpen}
         onMenu={() => setMenuOpen(true)}
       />
       <SmoothPage>
         <main id="main" tabIndex={-1}>
-          {certificatePage ? (
+          {page === "certificates" ? (
             <CertificateDetails />
-          ) : projectPage ? (
+          ) : page === "projects" ? (
             <ProjectDetails />
           ) : (
             <>
@@ -72,14 +67,10 @@ function Page() {
             </>
           )}
         </main>
-        <Footer projectPage={innerPage} />
+        <Footer page={page} />
       </SmoothPage>
-      <Menu
-        projectPage={innerPage}
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-      />
-      <GlobalMotion projectPage={innerPage} menuOpen={menuOpen} />
+      <Menu page={page} open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <GlobalMotion page={page} menuOpen={menuOpen} />
     </>
   );
 }

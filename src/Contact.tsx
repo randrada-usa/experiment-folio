@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { portfolioUrl, socialLinks } from "./content";
+import { socialLinks } from "./content";
 import { featuredCertificates } from "./certificates";
 import { gsap, ScrollTrigger, useGSAP, useMotion } from "./motion";
 import "./contact.css";
@@ -79,11 +79,13 @@ export function Contact() {
             <li key={certificate.slug}>
               <a
                 className="certificate-card"
-                href={`${portfolioUrl}/certifications/${certificate.slug}`}
+                href={`/certifications/#${certificate.slug}`}
               >
                 <div className="certificate-image">
                   <img
                     src={certificate.image}
+                    width={certificate.width}
+                    height={certificate.height}
                     alt={`${certificate.title} certificate`}
                     loading="lazy"
                     decoding="async"
@@ -98,10 +100,7 @@ export function Contact() {
             </li>
           ))}
         </ul>
-        <a
-          className="outline-link certificate-all"
-          href={`${portfolioUrl}/certifications`}
-        >
+        <a className="outline-link certificate-all" href="/certifications/">
           View all certs <span aria-hidden="true">↗</span>
         </a>
       </div>

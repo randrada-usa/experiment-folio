@@ -1,3 +1,5 @@
+import type { PageKind } from "./pages";
+import { nextPage } from "./pages";
 import { useEffect, useRef } from "react";
 import { portfolioUrl } from "./content";
 import { continuationProgress, wheelPixels } from "./navigation-model";
@@ -13,11 +15,13 @@ import "./global-motion.css";
 
 export function GlobalMotion({
   menuOpen,
-  projectPage = false,
+  page = "home",
 }: {
   menuOpen: boolean;
-  projectPage?: boolean;
+  page?: PageKind;
 }) {
+  const innerPage = page !== "home";
+  const next = nextPage[page];
   const { fine, reduced } = useMotion();
   const range = useRef<HTMLInputElement>(null);
   const progress = useRef<HTMLDivElement>(null);
@@ -155,8 +159,7 @@ export function GlobalMotion({
       draw();
       clearTimeout(idle);
       idle = window.setTimeout(reset, 800);
-      if (accumulated >= 6000)
-        go.current(projectPage ? "/#contact" : "/projects/");
+      if (accumulated >= 6000) go.current(next.href);
     };
     window.addEventListener("wheel", wheel, { passive: true });
     return () => {
@@ -164,7 +167,7 @@ export function GlobalMotion({
       clearTimeout(idle);
       reset();
     };
-  }, [fine, reduced, menuOpen, projectPage]);
+  }, [fine, reduced, menuOpen, next.href]);
 
   useEffect(() => {
     if (!fine || reduced || menuOpen || !trail.current) return;
@@ -245,14 +248,14 @@ export function GlobalMotion({
     <>
       <div className="page-progress" ref={progress} hidden={menuOpen}>
         <a
-          href={projectPage ? "/#contact" : "#contact"}
+          href={innerPage ? "/#contact" : "#contact"}
           onClick={(e) => {
-            if (projectPage) return;
+            if (innerPage) return;
             e.preventDefault();
             scrollToSection("contact");
           }}
         >
-          {projectPage ? "Connect" : "Skip"} <span>→</span>
+          {innerPage ? "Connect" : "Skip"} <span>→</span>
           <span className="sr-only"> to contact</span>
         </a>
         <input

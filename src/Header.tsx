@@ -1,3 +1,5 @@
+import type { PageKind } from "./pages";
+import { nextPage } from "./pages";
 import { scrollToSection, useMotion } from "./motion";
 import { Logo } from "./Logo";
 
@@ -37,21 +39,23 @@ function ControlHint({
 export function Header({
   menuOpen,
   onMenu,
-  projectPage = false,
+  page = "home",
 }: {
   menuOpen: boolean;
   onMenu: () => void;
-  projectPage?: boolean;
+  page?: PageKind;
 }) {
+  const innerPage = page !== "home";
+  const next = nextPage[page];
   const m = useMotion();
   return (
     <header className={`header ${m.hints ? "show-hints" : ""}`}>
       <a
         className="brand"
-        href={projectPage ? "/" : "#home"}
+        href={innerPage ? "/" : "#home"}
         aria-label="Rey Jane Andrada home"
         onClick={(e) => {
-          if (projectPage) return;
+          if (innerPage) return;
           e.preventDefault();
           scrollToSection("home");
         }}
@@ -74,7 +78,7 @@ export function Header({
         >
           <span>LET’S TALK</span>
         </button>
-        {m.fine && !projectPage && (
+        {m.fine && !innerPage && (
           <button
             className="control"
             aria-label="Toggle 3D perspective"
@@ -129,19 +133,9 @@ export function Header({
           <span>☰</span>
           <ControlHint label="Menu" row={72} compact />
         </button>
-        <a
-          className="control"
-          aria-label={
-            projectPage ? "Contact Rey Andrada" : "All portfolio projects"
-          }
-          href={projectPage ? "/#contact" : "/projects/"}
-        >
+        <a className="control" aria-label={next.description} href={next.href}>
           <span>→</span>
-          <ControlHint
-            label={projectPage ? "Contact" : "Projects"}
-            row={108}
-            compact
-          />
+          <ControlHint label={next.label} row={108} compact />
         </a>
       </nav>
     </header>

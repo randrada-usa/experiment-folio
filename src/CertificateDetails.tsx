@@ -55,7 +55,7 @@ export function CertificateDetails() {
     };
     window.addEventListener("popstate", followLocation);
     window.addEventListener("hashchange", followLocation);
-    followLocation();
+    if (location.hash) followLocation();
     return () => {
       window.removeEventListener("popstate", followLocation);
       window.removeEventListener("hashchange", followLocation);

@@ -1,3 +1,5 @@
+import type { PageKind } from "./pages";
+import { pageNavigation } from "./pages";
 import { useEffect, useRef } from "react";
 import { email, portfolioUrl, socialLinks } from "./content";
 import { InquiryForm } from "./Inquiry";
@@ -8,11 +10,11 @@ import { Logo } from "./Logo";
 export function Menu({
   open,
   onClose,
-  projectPage = false,
+  page = "home",
 }: {
   open: boolean;
   onClose: () => void;
-  projectPage?: boolean;
+  page?: PageKind;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const panel = useRef<HTMLDivElement>(null);
@@ -144,34 +146,14 @@ export function Menu({
           </div>
           <nav className="menu-links" aria-label="Menu navigation">
             <div>
-              {[
-                ...(projectPage ? ["Home"] : []),
-                "About",
-                "Projects",
-                "Contact",
-              ].map((label) => (
+              {pageNavigation(page).map(({ label, href, section }) => (
                 <a
                   key={label}
-                  href={
-                    label === "Projects"
-                      ? "/projects/"
-                      : label === "Home"
-                        ? "/"
-                        : `${projectPage ? "/" : ""}#${label.toLowerCase()}`
-                  }
+                  href={href}
                   onClick={(e) => {
-                    if (
-                      label === "Home" ||
-                      (label === "Projects" && !projectPage) ||
-                      (projectPage && label !== "Projects")
-                    )
-                      return;
+                    if (!section) return;
                     e.preventDefault();
-                    close(() =>
-                      scrollToSection(
-                        label === "Projects" ? "main" : label.toLowerCase(),
-                      ),
-                    );
+                    close(() => scrollToSection(section));
                   }}
                 >
                   {label}
@@ -180,9 +162,6 @@ export function Menu({
               ))}
               <a href={`${portfolioUrl}/cv`}>
                 Curriculum vitae<span>↗</span>
-              </a>
-              <a href={`${portfolioUrl}/certifications`}>
-                Certifications<span>↗</span>
               </a>
             </div>
             <div>

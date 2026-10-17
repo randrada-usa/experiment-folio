@@ -8,19 +8,19 @@ Target repository: https://github.com/randrada-usa/experiment-folio
 
 Inspection date: 2026-10-09
 
-Implementation comparison updated through 2026-10-16; certificate-detail planning updated 2026-10-17. See IMPLEMENTATION_PLAN.md for the per-section evidence and final coverage limits.
+Implementation comparison updated through 2026-10-17. See IMPLEMENTATION_PLAN.md for the per-section evidence and final coverage limits.
 
-## 2026-10-17 — Certificate detail-page study and approved scope (plan only)
+## 2026-10-17 — Certificate detail-page study and implementation
 
-This section records a fresh inspection of Rey's existing certificate detail page, not a claim that Kala has certificate pages. Implementation is now authorized; the first local detail was compared on desktop and phone before expansion. The existing project-detail page is the local motion/layout precedent; certificate content and hierarchy come from Rey's portfolio.
+This section records a fresh inspection of Rey's existing certificate detail page, not a claim that Kala has certificate pages. The full local page is implemented and checked within the coverage below; the first local detail was compared on desktop and phone before expansion. The existing project-detail page is the local motion/layout precedent; certificate content and hierarchy come from Rey's portfolio.
 
 ### Observed source page
 
 - Inspected `https://www.devbyrey.me/certifications/data-analyst-associate` in a running browser at approximately 1652px desktop and 390×844 phone. The page briefly displayed `LOADING /RJ` before the detail rendered. Entrance animation timing and reverse-navigation behavior were not measured.
 - Desktop: light background; back control at left, central navigation and availability at right. Category and issuer chips precede a very large title. Short description sits beneath the title; Issuer, Category and Year metadata occupies the adjacent column. A large, uncropped certificate image follows. A `/MORE CERTIFICATES` area presents two related items, then the site's contact/footer.
 - Phone: back and availability remain; central navigation is absent at the inspected width. Content uses approximately 16px side margins. The title wraps to two lines, metadata becomes two columns with Year below, and the certificate image uses the available width without horizontal overflow.
-- The source detail template selects two related certificates from the same category, excluding the current entry. Its back destination can return to the collection when reached from there; otherwise it falls back to the homepage certificates anchor. The certificate image is a static image, not an observed zoom control. The inspected original is 860×495 pixels; avoid upscaling expectations beyond its source resolution.
-- The current showcase's `featuredCertificates` data has title, issuer, image and slug only. The existing portfolio's `certifications` array currently contains 27 records in five categories, with descriptions, years and image filenames. Verify this inventory again at implementation time; do not assume newly added certificates are absent. Only the first ten image files are present in this repository today, so the remaining owned images must be brought over for a complete local collection.
+- The source detail template selects up to two related certificates from the same category, excluding the current entry. Its back destination can return to the collection when reached from there; otherwise it falls back to the homepage certificates anchor. The certificate image is a static image, not an observed zoom control. The inspected original is 860×495 pixels; avoid upscaling expectations beyond its source resolution.
+- At study start, the showcase held ten previews with title/issuer/image/slug only. The source inventory was reconciled to 27 records in five categories. The local data now contains all descriptions, years, source slugs and image dimensions, plus the 17 missing image files. All 27 records were compared field-for-field and all image hashes match the source. Refresh this inventory when adding future credentials.
 
 ### Approved local scope and proposed presentation
 
@@ -32,18 +32,20 @@ This section records a fresh inspection of Rey's existing certificate detail pag
 - At desktop, keep the title/meta in a balanced split and allow the certificate image to dominate the next row. At phone, stack title, description, metadata and image; make related items fully operable with touch and keyboard. Exact sizes and breakpoints require matching-viewport local comparison after implementation.
 - Motion proposal is intentionally restrained: staged title/metadata entrance and image reveal only if fresh in-motion inspection supports them; related-card hover/focus treatments may follow the existing site's design language. No unobserved image parallax, pointer tilt, zoom or auto-playing media. Respect `prefers-reduced-motion`, reloaded deep links, and browser Back.
 
-### Certificate detail comparison checklist (not yet executed)
+### Certificate detail comparison checklist — completed within stated coverage
 
 - [x] Route/scope decision: one local collection/detail page for all owned certificates, with search and category filters; source currently lists 27.
 - [x] Reconciled 27 source records, 27 matching images and five category labels. Original metadata/order preserved; intrinsic image sizes recorded for layout stability.
-- [ ] Test combined title/issuer/description search and category filtering, result count, empty state, reset, keyboard/touch operation, focus retention and direct hash loads under filtering.
-  - C2 browser evidence: issuer search 5 results; combined category 1; empty state 0; reset 27; phone category 2; keyboard detail focus and Back-restored filters verified. Final full matrix pending. Search/filter UI is an original adaptation.
-- [ ] Reinspect source detail at matching desktop/phone viewports in motion, including loader/entrance, Back, related-item hover, and reduced-motion behavior; distinguish observed behavior from the local creative adaptation.
-- [ ] Verify title, issuer, category, year, description, slug and image against the existing portfolio for every included certificate; confirm no missing assets or fabricated fields.
-- [ ] Compare each implemented layout stage against source content hierarchy and against the local project-detail design at 1440×900, 390×844 and the responsive transition width. First detail checked at desktop/phone: split/stacked metadata, uncropped loaded image, no overflow; remaining stages and breakpoint pending.
-- [ ] Test direct deep-link load, in-page or per-page navigation, browser Back/Forward, menu/header/footer destinations, related items and “View all certs.”
-- [ ] Observe entrance/hover/scroll animations in motion, including triggers and timing; test reduced motion, keyboard, touch-width layout, no overflow and image decode.
-- [ ] Record each completed section, unresolved visual differences and regressions here and in IMPLEMENTATION_PLAN.md before claiming parity.
+- [x] Combined search/category, result counts, empty/reset states, keyboard operation and deep-link reveal checked. Browser category counts: Data 4, AI 6, Cloud 8, Software 2, Events 7. DataCamp search gives 5; adding Cloud gives 1; description search “protocols” gives Networking Basics. Search persists on reload; related links reveal filtered-out targets and Back restores filters.
+- [x] Source detail hierarchy rechecked on desktop and phone, including document scrolling and related-page navigation. Its loader was observed; exact source entrance/hover timing and source reduced-motion behavior remain unmeasured. No new loader or decorative entrance was copied.
+- [x] All 27 records and original image bytes verified against the source. Visited every local detail through its index; all 27 images decoded.
+- [x] First detail checked before expansion; complete page checked at 1440×900, 390×844, 320×800 and the 760/761 layout boundary. Split/stacked metadata, uncropped images and long titles rendered with no horizontal document overflow at those sizes.
+- [x] Direct hash loads, conflicting query/hash recovery, index/related jumps, browser Back/Forward, menu/header/footer and homepage card/full-collection links exercised. Three phone detail reloads preserved query and landed at 120px with the image loaded. Forward restored the certificate hash, focused target and loaded image at approximately120px.
+- [x] Local smooth jump measured in motion: top approximately 971→566→335→237→171→144px over the first 536ms, settling at 120px; target receives focus. Reduced motion removes smoothing/trail and hover transitions. Pointer hover on an index row produces gray fill, italic accent text and 10px horizontal inset; transitions are 140/180/100ms. Both red and purple themes inspected. These interactions adapt the established local language; exact source timing parity is not claimed.
+- [x] Homepage still renders ten two-column previews, project page retains six cases, and normal-motion footer continuation reaches homepage contact. Back restores root opacity to 1. No captured production console warnings/errors.
+- [x] Both planning documents and asset notes updated with the staged checks. Remaining coverage limits: physical touch, Safari/Firefox, OS-level reduced-motion changes and exact source animation parity.
+
+Evidence: ignored `artifacts/certificates-collection-desktop.jpg` and `artifacts/certificates-detail-phone.jpg`. The complete collection/index is an intentional new page composition; each detail preserves the original certificate hierarchy in the showcase theme. Certificate images are static, lazy-loaded and uncropped; source resolution can limit large-screen sharpness.
 
 ## 2026-10-16 — Certificate adaptation and footer correction
 
