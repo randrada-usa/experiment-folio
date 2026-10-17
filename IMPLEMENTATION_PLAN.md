@@ -70,18 +70,18 @@ Animation acceptance needs timed running-browser measurements and visual inspect
 
 ## Stages and intended commits
 
-| Stage | Work                                                           | Acceptance before advancing                                            | State                                                              |
-| ----- | -------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| 0     | Persist reference spec, plan, evidence conventions             | Document observation vs unknown and adaptation                         | complete: 6b84032                                                  |
-| 1     | Scaffold, tokens/fonts, header, preferences, motion lifecycle  | Browser desktop/mobile; semantic/keyboard checks; build                | verified and integrated                                            |
-| 2     | Hero, layered art, ticker, perspective/parallax/ambient motion | Desktop/phone comparison; motion time samples; 3 hard reloads          | verified adaptation                                                |
-| 3     | Six-project horizontal gallery and mobile stack                | Pin/reverse/exit; 768/769 resize; correct destinations/media           | verified adaptation                                                |
-| 4     | Statement, word reveal, CTA                                    | Trigger and once-only behavior; phone wraps                            | verified adaptation                                                |
-| 5     | Contact heading/pin/form                                       | Wide pin/narrow stack; choices; validation/draft/copy, no sends        | verified draft/layout; clipboard failure branch not browser-tested |
-| 6     | Menu dialog and duplicate form                                 | Entry/exit, independent scrolling, Escape/focus/backdrop, shared draft | verified adaptation                                                |
-| 7     | Footer, cursor/progress/skip, page exit/bottom continuation    | Marquee/tilt; safe public navigation test; reduced/narrow exceptions   | verified adaptation                                                |
-| 8     | Integration/regression and polish                              | Build/typecheck, browser matrix, accessibility, repeated loads         | complete within documented browser coverage; limitations below     |
-| 9     | Pointer-motion fidelity refinement (hero, gallery, trail)       | Matching-viewport moving-browser comparison and regression matrix     | implemented and checked within the coverage below; exact timing/geometry parity not claimed |
+| Stage | Work                                                           | Acceptance before advancing                                            | State                                                                                       |
+| ----- | -------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| 0     | Persist reference spec, plan, evidence conventions             | Document observation vs unknown and adaptation                         | complete: 6b84032                                                                           |
+| 1     | Scaffold, tokens/fonts, header, preferences, motion lifecycle  | Browser desktop/mobile; semantic/keyboard checks; build                | verified and integrated                                                                     |
+| 2     | Hero, layered art, ticker, perspective/parallax/ambient motion | Desktop/phone comparison; motion time samples; 3 hard reloads          | verified adaptation                                                                         |
+| 3     | Six-project horizontal gallery and mobile stack                | Pin/reverse/exit; 768/769 resize; correct destinations/media           | verified adaptation                                                                         |
+| 4     | Statement, word reveal, CTA                                    | Trigger and once-only behavior; phone wraps                            | verified adaptation                                                                         |
+| 5     | Contact heading/pin/form                                       | Wide pin/narrow stack; choices; validation/draft/copy, no sends        | verified draft/layout; clipboard failure branch not browser-tested                          |
+| 6     | Menu dialog and duplicate form                                 | Entry/exit, independent scrolling, Escape/focus/backdrop, shared draft | verified adaptation                                                                         |
+| 7     | Footer, cursor/progress/skip, page exit/bottom continuation    | Marquee/tilt; safe public navigation test; reduced/narrow exceptions   | verified adaptation                                                                         |
+| 8     | Integration/regression and polish                              | Build/typecheck, browser matrix, accessibility, repeated loads         | complete within documented browser coverage; limitations below                              |
+| 9     | Pointer-motion fidelity refinement (hero, gallery, trail)      | Matching-viewport moving-browser comparison and regression matrix      | implemented and checked within the coverage below; exact timing/geometry parity not claimed |
 
 Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat statement; feat contact; feat menu; feat footer/navigation; focused fix commits and verification docs. Stage only intended paths and inspect staged diff/check before committing. Report hashes separately from push status. Never stage unrelated original portfolio changes.
 
@@ -273,9 +273,9 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 - Commit: foundation milestone; resolve from git log.
 
 Every stage has a local inspection record, motion behavior check, deliberate differences list, and focused commit. Final report identifies remaining gaps, real test results, commit hashes, and whether anything was pushed/deployed. Never label the full site matched while source video/artwork or device coverage is absent.
+
 # Local destinations expansion — 2026-10-17
 
 1. CV: inspect source page at desktop/phone, add local public PDF/preview and route, verify, commit. **Done.**
-2. Project details: inspect the existing detail hierarchy, create six local case-study destinations with verified content, validate representative desktop/phone pages and all direct routes, commit.
+2. Project details: inspect the existing detail hierarchy, create six local case-study destinations with verified content, validate representative desktop/phone pages and all direct routes, commit. **Done.** Full case-study text preserved from existing public content; unpublished ADS excluded; no private repository action. Narrow metadata refined to two columns plus a full-width stack after inspection.
 3. Connect hero/ticker, overview, menu, and certificate image actions; remove original-portfolio navigation. Preserve one searchable certificate collection. Audit local targets, test Back/reload and motion settings, update records, commit.
-

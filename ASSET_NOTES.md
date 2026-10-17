@@ -9,7 +9,7 @@
 - Generated purple prompt: “Use case: precise-object-edit. Asset type: alternate-theme portfolio logo. Input image 1 is the edit target. Change ONLY the bright red R and the four red accent rays to deep vivid purple #5135CD. Keep the white J, black background, exact RJ letter shapes, tilted composition, edges, relative positions, all proportions, and square canvas framing unchanged. No extra text or objects. This is a faithful colorway of the supplied logo, not a redesign.”
 - The original black background is preserved, including the intentional black logo tile in the white menu.
 - Cascadia Code Variable is self-hosted through `@fontsource-variable/cascadia-code`; its supplied OFL is included in `public/licenses/Cascadia-Code-OFL.txt`. React's MIT notice is included in `public/licenses/React-MIT.txt`. No Kala illustrations, videos, identity assets or analytics identifiers are included.
+
 # Local CV assets — 2026-10-17
 
 `public/assets/cv/Rey-Jane-Andrada-CV-2026-08.pdf` and `rey-jane-andrada-cv-preview-2026-08-v3.webp` are unchanged copies of the user's already-public CV assets from `C:/dev/CleanPortfolio/public/assets/cv`. The date remains August 2026; this is not a newly updated CV. No other CV variants were copied.
-

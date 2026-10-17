@@ -12,6 +12,7 @@ import { GlobalMotion } from "./GlobalMotion";
 import { ProjectDetails } from "./ProjectDetails";
 import { CertificateDetails } from "./CertificateDetails";
 import { CvPage } from "./CvPage";
+import { ProjectPage } from "./ProjectPage";
 import { getPageKind } from "./pages";
 
 export function App() {
@@ -55,7 +56,9 @@ function Page() {
       />
       <SmoothPage>
         <main id="main" tabIndex={-1}>
-          {page === "cv" ? (
+          {page === "project" ? (
+            <ProjectPage />
+          ) : page === "cv" ? (
             <CvPage />
           ) : page === "certificates" ? (
             <CertificateDetails />
