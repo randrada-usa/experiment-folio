@@ -147,7 +147,7 @@ export function Hero() {
         <div className="hero-side hero-left">
           <a
             className="side-art side-art-game"
-            href="https://www.devbyrey.me/projects/wave-and-wish"
+            href="/projects/wave-and-wish/"
             aria-label="Explore Wave and Wish"
           >
             <span className="art-index">01 / PLAY IN MOTION</span>
@@ -197,7 +197,7 @@ export function Hero() {
         <div className="hero-side hero-right">
           <a
             className="side-art side-art-web"
-            href="https://www.devbyrey.me/projects/iloilo-farmers-hub"
+            href="/projects/iloilo-farmers-hub/"
             aria-label="Explore Iloilo Farmers Hub"
           >
             <span className="art-index">02 / SYSTEMS THAT CONNECT</span>
@@ -228,9 +228,9 @@ export function Hero() {
           {[0, 1].map((i) => (
             <div className="ticker-group" key={i} aria-hidden={i === 1}>
               {[
-                ["SELECTED WORK", "https://www.devbyrey.me/projects"],
-                ["A LITTLE ABOUT ME", "https://www.devbyrey.me/#about"],
-                ["VIEW MY CV", "https://www.devbyrey.me/cv"],
+                ["SELECTED WORK", "/projects/"],
+                ["A LITTLE ABOUT ME", "#about"],
+                ["VIEW MY CV", "/cv/"],
                 ["LET’S TALK", "mailto:rayalejaga12@gmail.com"],
               ].map(([label, href]) => (
                 <a key={label} href={href} tabIndex={i === 1 ? -1 : undefined}>

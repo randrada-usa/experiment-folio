@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { projects } from "./content";
 import { scrollToSection } from "./motion";
-import { portfolioUrl } from "./content";
 import type { Project } from "./content";
 import { projectStudies } from "./project-studies";
 import type { ProjectStudy } from "./project-studies";
@@ -109,9 +108,7 @@ function CaseStudy({
             <h3>About Project</h3>
             <p>{study.about}</p>
             <div className="case-links">
-              <a href={`${portfolioUrl}/projects/${project.slug}`}>
-                Full case study ↗
-              </a>
+              <a href={`/projects/${project.slug}/`}>Full case study ↗</a>
               {study.liveUrl && (
                 <a href={study.liveUrl} target="_blank" rel="noreferrer">
                   View live ↗

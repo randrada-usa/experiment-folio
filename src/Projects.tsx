@@ -199,7 +199,7 @@ export function Projects() {
                 className="project"
                 data-project={project.slug}
                 key={project.slug}
-                href={`/projects/#${project.slug}`}
+                href={`/projects/${project.slug}/`}
                 onFocus={(e) => revealCard(e.currentTarget)}
                 onPointerEnter={(e) => {
                   moveCursor(e);

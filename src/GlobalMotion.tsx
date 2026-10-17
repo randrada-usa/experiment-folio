@@ -1,7 +1,6 @@
 import type { PageKind } from "./pages";
 import { nextPage } from "./pages";
 import { useEffect, useRef } from "react";
-import { portfolioUrl } from "./content";
 import { continuationProgress, wheelPixels } from "./navigation-model";
 import { advanceTrail, createTrail, lockTrail } from "./cursor-trail";
 import {
@@ -79,11 +78,8 @@ export function GlobalMotion({
         !anchor ||
         anchor.target ||
         anchor.hasAttribute("download") ||
-        !(
-          anchor.href.startsWith(`${portfolioUrl}/`) ||
-          (anchor.origin === location.origin &&
-            anchor.pathname !== location.pathname)
-        )
+        anchor.origin !== location.origin ||
+        anchor.pathname === location.pathname
       )
         return;
       event.preventDefault();

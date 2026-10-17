@@ -7,7 +7,6 @@ import {
   filterCertificates,
 } from "./certificates";
 import type { Certification } from "./certificates";
-import { portfolioUrl } from "./content";
 import { ScrollTrigger, scrollToSection } from "./motion";
 import "./certificate-details.css";
 
@@ -297,12 +296,8 @@ function CertificateSection({
           <span>
             {certificate.issuer} · {certificate.year}
           </span>
-          <a
-            href={`${portfolioUrl}/certifications/${certificate.slug}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Original portfolio entry ↗
+          <a href={certificate.image} target="_blank" rel="noreferrer">
+            Open certificate image ↗
           </a>
         </figcaption>
       </figure>

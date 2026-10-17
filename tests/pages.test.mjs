@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { existsSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { projects } from "../src/content.ts";
 import { projectStudies } from "../src/project-studies.ts";
 import { projectCaseContent } from "../src/project-case-content.ts";
@@ -55,6 +55,17 @@ test("local CV assets exist and use the public August 2026 version", () => {
   ]) {
     assert.ok(
       existsSync(new URL(`../public/assets/cv/${file}`, import.meta.url)),
+    );
+  }
+});
+
+test("UI source does not link back to the original portfolio", () => {
+  const root = new URL("../src/", import.meta.url);
+  for (const file of readdirSync(root).filter((file) => /\.tsx?$/.test(file))) {
+    assert.doesNotMatch(
+      readFileSync(new URL(file, root), "utf8"),
+      /devbyrey\.me|portfolioUrl/,
+      file,
     );
   }
 });

@@ -59,7 +59,8 @@ export function ProjectPage() {
               href="#case-study"
               onClick={(event) => {
                 event.preventDefault();
-                history.pushState(null, "", "#case-study");
+                if (location.hash !== "#case-study")
+                  history.pushState(null, "", "#case-study");
                 scrollToSection("case-study", true, 120);
               }}
             >

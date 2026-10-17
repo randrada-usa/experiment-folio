@@ -1,4 +1,3 @@
-export const portfolioUrl = "https://www.devbyrey.me";
 export const email = "rayalejaga12@gmail.com";
 export const socialLinks = [
   { label: "Email", href: `mailto:${email}` },
