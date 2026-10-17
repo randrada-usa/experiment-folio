@@ -12,7 +12,7 @@ Implementation comparison updated through 2026-10-16; certificate-detail plannin
 
 ## 2026-10-17 — Certificate detail-page study and approved scope (plan only)
 
-This section records a fresh inspection of Rey's existing certificate detail page, not a claim that Kala has certificate pages. No local certificate detail page has been built or compared yet. The existing project-detail page is the local motion/layout precedent; certificate content and hierarchy come from Rey's portfolio.
+This section records a fresh inspection of Rey's existing certificate detail page, not a claim that Kala has certificate pages. Implementation is now authorized; the first local detail was compared on desktop and phone before expansion. The existing project-detail page is the local motion/layout precedent; certificate content and hierarchy come from Rey's portfolio.
 
 ### Observed source page
 
@@ -35,11 +35,11 @@ This section records a fresh inspection of Rey's existing certificate detail pag
 ### Certificate detail comparison checklist (not yet executed)
 
 - [x] Route/scope decision: one local collection/detail page for all owned certificates, with search and category filters; source currently lists 27.
-- [ ] Reconcile the current source inventory, migrate all verified records and missing owned image assets, and check five category labels.
+- [x] Reconciled 27 source records, 27 matching images and five category labels. Original metadata/order preserved; intrinsic image sizes recorded for layout stability.
 - [ ] Test combined title/issuer/description search and category filtering, result count, empty state, reset, keyboard/touch operation, focus retention and direct hash loads under filtering.
 - [ ] Reinspect source detail at matching desktop/phone viewports in motion, including loader/entrance, Back, related-item hover, and reduced-motion behavior; distinguish observed behavior from the local creative adaptation.
 - [ ] Verify title, issuer, category, year, description, slug and image against the existing portfolio for every included certificate; confirm no missing assets or fabricated fields.
-- [ ] Compare each implemented layout stage against source content hierarchy and against the local project-detail design at 1440×900, 390×844 and the responsive transition width.
+- [ ] Compare each implemented layout stage against source content hierarchy and against the local project-detail design at 1440×900, 390×844 and the responsive transition width. First detail checked at desktop/phone: split/stacked metadata, uncropped loaded image, no overflow; remaining stages and breakpoint pending.
 - [ ] Test direct deep-link load, in-page or per-page navigation, browser Back/Forward, menu/header/footer destinations, related items and “View all certs.”
 - [ ] Observe entrance/hover/scroll animations in motion, including triggers and timing; test reduced motion, keyboard, touch-width layout, no overflow and image decode.
 - [ ] Record each completed section, unresolved visual differences and regressions here and in IMPLEMENTATION_PLAN.md before claiming parity.

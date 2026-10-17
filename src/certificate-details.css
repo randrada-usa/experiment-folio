@@ -1,0 +1,147 @@
+.certificate-details {
+  padding: 138px var(--inset) 0;
+}
+.cert-back,
+.cert-eyebrow {
+  font-size: 12px;
+  color: var(--muted);
+}
+.cert-back {
+  display: inline-block;
+  margin-bottom: 52px;
+}
+.cert-title-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  align-items: end;
+  gap: 60px;
+  margin-bottom: 50px;
+}
+.cert-title-row h1 {
+  font-size: clamp(56px, 8vw, 124px);
+  line-height: 0.95;
+  letter-spacing: -0.065em;
+}
+.cert-title-row p {
+  max-width: 440px;
+  font-size: 17px;
+  line-height: 1.6;
+  padding-bottom: 8px;
+}
+.cert-intro > .cert-eyebrow {
+  padding-block: 22px;
+  border-top: 1px dashed var(--line);
+}
+.cert-detail {
+  padding-block: 28px 96px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 120px;
+}
+.cert-section-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 65px;
+}
+.cert-section-top a {
+  font-size: 12px;
+  white-space: nowrap;
+}
+.cert-detail-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr);
+  gap: 8vw;
+  align-items: start;
+  margin-bottom: 48px;
+}
+.cert-detail h2 {
+  font-size: clamp(32px, 4.8vw, 72px);
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+  overflow-wrap: anywhere;
+}
+.cert-description {
+  color: var(--muted);
+  margin-top: 24px;
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 720px;
+}
+.cert-meta {
+  margin: 0;
+  display: grid;
+  gap: 24px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.cert-meta dt {
+  color: var(--muted);
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+.cert-meta dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.cert-document {
+  margin: 0;
+}
+.cert-document img {
+  width: 100%;
+  height: auto;
+  max-height: 85vh;
+  object-fit: contain;
+  background: #111;
+}
+.cert-document figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 14px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.cert-document figcaption a {
+  text-align: right;
+}
+@media (max-width: 760px) {
+  .certificate-details {
+    padding-top: 110px;
+  }
+  .cert-back {
+    margin-bottom: 36px;
+  }
+  .cert-title-row {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 34px;
+  }
+  .cert-title-row p {
+    font-size: 14px;
+  }
+  .cert-section-top {
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .cert-detail-heading {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 28px;
+  }
+  .cert-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .cert-description {
+    font-size: 14px;
+  }
+  .cert-document figcaption {
+    font-size: 10px;
+  }
+  .cert-detail {
+    padding-bottom: 64px;
+  }
+}

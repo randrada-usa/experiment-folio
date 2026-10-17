@@ -5,7 +5,11 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      input: { home: "index.html", projects: "projects/index.html" },
+      input: {
+        home: "index.html",
+        projects: "projects/index.html",
+        certifications: "certifications/index.html",
+      },
     },
   },
   server: { port: 5173, strictPort: true },

@@ -24,7 +24,13 @@ The user chose one local page for every certificate they have, with search and f
 
 **Stage C4 — Regression and handoff.** Build/typecheck/tests, full inventory/asset audit, all search/filter combinations, direct loads, deep-link refresh, 1440×900/390×844 plus breakpoint and 320px overflow, image decode/lazy loading, hover/focus/touch, reduced motion, repeated hard reload and Back/Forward. Recheck homepage certificate section and projects page for regressions. Update both documents with pass/fail evidence, intentional differences and remaining limits; make a focused documentation/repair commit. Push/deploy only on explicit request.
 
-Current status: planning only. The one-page/all-owned/search-and-filter scope is settled. No local certificate detail route, source-content migration, dependency installation, or app code change has been made for this request. Unmeasured source motion and the final source inventory still need inspection; do not mark any C-stage comparison complete yet.
+Current status: implementation authorized. C0/C1 checked; C2–C4 in progress. No push or deployment performed.
+
+#### Certificate implementation ledger — 2026-10-17
+
+- C0: source inventory reconciled to 27 records, five categories and 27 matching owned WebP images. Copied only the 17 missing assets, preserved source wording/slugs/order, and recorded intrinsic dimensions to reserve image space before lazy loading. Source portfolio remains unchanged.
+- C1: built the real `/certifications/` entry, collection introduction and first detail. Production build/typecheck passed. Revisited live Data Analyst Associate at desktop and SQL Associate at 390×844; the source uses a static uncropped document, split desktop metadata and stacked phone metadata. Local first detail retains that hierarchy in the showcase theme. Browser checked local desktop 1440×900 and phone 390×844: no horizontal overflow, first image decoded; direct hash reload landed approximately 120px below the top and focused the detail. The title, monospace typography, colors and collection introduction are intentional adaptations.
+- Source loader and related-page navigation were observed, but exact entrance timing was not measured. No new decorative entrance animation or reference timing parity is claimed. Shared smooth scrolling remains subject to C3 moving-browser checks.
 
 ### 2026-10-16 — Certificate and footer iteration completed
 

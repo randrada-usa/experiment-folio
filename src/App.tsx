@@ -10,6 +10,7 @@ import { Menu } from "./Menu";
 import { Footer } from "./Footer";
 import { GlobalMotion } from "./GlobalMotion";
 import { ProjectDetails } from "./ProjectDetails";
+import { CertificateDetails } from "./CertificateDetails";
 
 export function App() {
   return (
@@ -35,6 +36,10 @@ function Page() {
   const projectPage = /^\/projects(?:\/|\/index\.html)?$/.test(
     location.pathname,
   );
+  const certificatePage = /^\/certifications(?:\/|\/index\.html)?$/.test(
+    location.pathname,
+  );
+  const innerPage = projectPage || certificatePage;
   return (
     <>
       <a
@@ -48,13 +53,15 @@ function Page() {
         Skip to content
       </a>
       <Header
-        projectPage={projectPage}
+        projectPage={innerPage}
         menuOpen={menuOpen}
         onMenu={() => setMenuOpen(true)}
       />
       <SmoothPage>
         <main id="main" tabIndex={-1}>
-          {projectPage ? (
+          {certificatePage ? (
+            <CertificateDetails />
+          ) : projectPage ? (
             <ProjectDetails />
           ) : (
             <>
@@ -65,14 +72,14 @@ function Page() {
             </>
           )}
         </main>
-        <Footer projectPage={projectPage} />
+        <Footer projectPage={innerPage} />
       </SmoothPage>
       <Menu
-        projectPage={projectPage}
+        projectPage={innerPage}
         open={menuOpen}
         onClose={() => setMenuOpen(false)}
       />
-      <GlobalMotion projectPage={projectPage} menuOpen={menuOpen} />
+      <GlobalMotion projectPage={innerPage} menuOpen={menuOpen} />
     </>
   );
 }
