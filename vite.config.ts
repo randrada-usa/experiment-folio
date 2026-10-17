@@ -9,6 +9,7 @@ export default defineConfig({
         home: "index.html",
         projects: "projects/index.html",
         certifications: "certifications/index.html",
+        cv: "cv/index.html",
       },
     },
   },

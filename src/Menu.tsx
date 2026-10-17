@@ -1,7 +1,7 @@
 import type { PageKind } from "./pages";
 import { pageNavigation } from "./pages";
 import { useEffect, useRef } from "react";
-import { email, portfolioUrl, socialLinks } from "./content";
+import { email, socialLinks } from "./content";
 import { InquiryForm } from "./Inquiry";
 import { gsap, ScrollSmoother, scrollToSection, useMotion } from "./motion";
 import "./menu.css";
@@ -160,7 +160,7 @@ export function Menu({
                   <span>↗</span>
                 </a>
               ))}
-              <a href={`${portfolioUrl}/cv`}>
+              <a href="/cv/">
                 Curriculum vitae<span>↗</span>
               </a>
             </div>

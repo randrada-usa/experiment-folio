@@ -1,0 +1,113 @@
+.standalone-page {
+  padding: 138px var(--inset) 0;
+}
+.standalone-back {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 56px;
+}
+.standalone-hero > .eyebrow {
+  margin-bottom: 24px;
+  color: var(--muted);
+}
+.standalone-hero h1 {
+  max-width: 1200px;
+  font-size: clamp(48px, 7.5vw, 112px);
+  line-height: 1;
+  letter-spacing: -0.065em;
+  overflow-wrap: anywhere;
+}
+.standalone-intro {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  align-items: end;
+  gap: 48px;
+  margin-top: 40px;
+}
+.standalone-intro > p {
+  max-width: 780px;
+  font-size: clamp(16px, 1.6vw, 22px);
+  line-height: 1.6;
+}
+.standalone-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.standalone-actions a {
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 14px;
+  min-height: 44px;
+}
+.standalone-actions a:hover {
+  font-style: italic;
+}
+.standalone-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 48px 0 0;
+  padding: 24px 0;
+  border-block: 1px dashed var(--line);
+}
+.standalone-meta dt {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+.standalone-meta dd {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.standalone-section-title {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 24px;
+}
+.standalone-section-title h2 {
+  font-size: 18px;
+}
+.standalone-section-title span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.cv-document {
+  padding-block: 32px 80px;
+}
+.cv-document > a {
+  display: block;
+  background: #242424;
+  padding: clamp(12px, 4vw, 48px);
+}
+.cv-document img {
+  width: 100%;
+  max-width: 960px;
+  margin-inline: auto;
+  height: auto;
+}
+@media (max-width: 760px) {
+  .standalone-page {
+    padding-top: 116px;
+  }
+  .standalone-back {
+    margin-bottom: 38px;
+  }
+  .standalone-intro {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 28px;
+  }
+  .standalone-meta {
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .standalone-meta dd {
+    font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+}

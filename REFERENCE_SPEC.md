@@ -251,3 +251,11 @@ Status vocabulary: unimplemented; implemented/unverified; verified (specific che
 | S09 project details | Live1440/1652 desktop,390 phone; media playback and scrolling observed | verified adaptation | Six own cases, staggered desktop columns, media-first <=720 layout, native deep links and smooth jumps, shared controls/footer. Local1440/834/390 and720/721 tested. One still per case replaces missing recordings; two-column metadata <=1000 avoids overlap. Back fade regression fixed and retested. No exact timing/media parity. |
 
 Cross-browser Safari/Firefox, physical-device touch, precise hover/easing parity and continuous video capture remain gaps. Reference track click was attempted with no movement; local native click seeking is a verified deliberate improvement. Stage9 used the live development preview, followed by a desktop production-browser smoke check on2026-10-14 (hero, gallery pointer/scroll transforms, circle trail, zero document overflow and no captured warnings/errors). Every stage's viewport, settings, measurements, evidence, fixes and regressions are recorded in IMPLEMENTATION_PLAN.md. No pixel-identical claim is made.
+# Local destination expansion — 2026-10-17
+
+- User supersedes the earlier original-portfolio fallback: navigation must stay within this showcase for portfolio content. Real social profiles and live demos remain external.
+- Inspected original `/cv` at 1440×900 and 390×844. Observed title/summary, Download PDF and Open PDF actions, format/length/update metadata, then one full uncropped static preview. Mobile stacks the title/actions above three metadata columns. Source loader appeared on navigation; its duration was not measured and is not replicated.
+- Local CV deliberately adapts that content hierarchy to the showcase's black background, monospace, accent italic headline, existing shared navigation and motion settings; not a pixel-match claim.
+- [x] Local `/cv/` production entry, desktop and phone screenshots inspected, preview decoded at 1530×1980, local PDF action destinations checked.
+- [ ] Individual project destinations, remaining link audit and navigation regression checks.
+

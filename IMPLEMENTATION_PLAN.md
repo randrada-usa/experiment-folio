@@ -273,3 +273,9 @@ Commit sequence: docs baseline; chore foundation; feat hero; feat gallery; feat 
 - Commit: foundation milestone; resolve from git log.
 
 Every stage has a local inspection record, motion behavior check, deliberate differences list, and focused commit. Final report identifies remaining gaps, real test results, commit hashes, and whether anything was pushed/deployed. Never label the full site matched while source video/artwork or device coverage is absent.
+# Local destinations expansion — 2026-10-17
+
+1. CV: inspect source page at desktop/phone, add local public PDF/preview and route, verify, commit. **Done.**
+2. Project details: inspect the existing detail hierarchy, create six local case-study destinations with verified content, validate representative desktop/phone pages and all direct routes, commit.
+3. Connect hero/ticker, overview, menu, and certificate image actions; remove original-portfolio navigation. Preserve one searchable certificate collection. Audit local targets, test Back/reload and motion settings, update records, commit.
+

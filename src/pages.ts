@@ -1,6 +1,7 @@
-export type PageKind = "home" | "projects" | "certificates";
+export type PageKind = "home" | "projects" | "certificates" | "cv";
 
 export function getPageKind(pathname: string): PageKind {
+  if (/^\/cv(?:\/|\/index\.html)?$/.test(pathname)) return "cv";
   if (/^\/projects(?:\/|\/index\.html)?$/.test(pathname)) return "projects";
   if (/^\/certifications(?:\/|\/index\.html)?$/.test(pathname))
     return "certificates";
@@ -8,6 +9,12 @@ export function getPageKind(pathname: string): PageKind {
 }
 
 export const nextPage = {
+  cv: {
+    href: "/projects/",
+    label: "Projects",
+    description: "Explore my projects",
+    footerLabel: "Explore the work",
+  },
   home: {
     href: "/projects/",
     label: "Projects",
