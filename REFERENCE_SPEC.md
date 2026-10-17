@@ -10,6 +10,36 @@ Inspection date: 2026-10-09
 
 Implementation comparison updated through 2026-10-16. See IMPLEMENTATION_PLAN.md for the per-section evidence and final coverage limits.
 
+## 2026-10-17 — Certificate detail-page study (plan only)
+
+This section records a fresh inspection of Rey's existing certificate detail page, not a claim that Kala has certificate pages. No local certificate detail page has been built or compared yet. The existing project-detail page is the local motion/layout precedent; certificate content and hierarchy come from Rey's portfolio.
+
+### Observed source page
+
+- Inspected `https://www.devbyrey.me/certifications/data-analyst-associate` in a running browser at approximately 1652px desktop and 390×844 phone. The page briefly displayed `LOADING /RJ` before the detail rendered. Entrance animation timing and reverse-navigation behavior were not measured.
+- Desktop: light background; back control at left, central navigation and availability at right. Category and issuer chips precede a very large title. Short description sits beneath the title; Issuer, Category and Year metadata occupies the adjacent column. A large, uncropped certificate image follows. A `/MORE CERTIFICATES` area presents two related items, then the site's contact/footer.
+- Phone: back and availability remain; central navigation is absent at the inspected width. Content uses approximately 16px side margins. The title wraps to two lines, metadata becomes two columns with Year below, and the certificate image uses the available width without horizontal overflow.
+- The source detail template selects two related certificates from the same category, excluding the current entry. Its back destination can return to the collection when reached from there; otherwise it falls back to the homepage certificates anchor. The certificate image is a static image, not an observed zoom control. The inspected original is 860×495 pixels; avoid upscaling expectations beyond its source resolution.
+- The current showcase's `featuredCertificates` data has title, issuer, image and slug only. Descriptions, categories and years must be sourced from the existing portfolio records before a local detail implementation. Ten already-owned images are present in `public/assets/certs/`; no new certificate artwork is required for the first ten.
+
+### Proposed local adaptation — not yet observed or approved as a final route
+
+- Preserve the showcase's black/red-or-purple design language and shared header/footer rather than importing the existing portfolio's light styling wholesale. Use the original certificate image as the visual focus; keep its intrinsic aspect ratio and no crop.
+- Page hierarchy: (1) accessible return/breadcrumb and certificate number, (2) issuer/category eyebrow and large title, (3) factual description and Issuer/Category/Year metadata, (4) full-width certificate image with optional explicit external verification/original-page link only where a real destination exists, (5) two related certificates drawn from the same category, (6) full-collection CTA and shared footer. Avoid invented credential IDs, dates, scores or accreditation claims.
+- Recommended route model pending user choice: one local `/certifications/` page containing ten anchor-addressable detail sections, analogous to the existing long `/projects/` page. Each homepage card would lead to `/certifications/#<slug>`; “View all certs” would continue to the existing 27-entry collection so that label remains truthful. Alternative: ten separate local detail URLs for closer parity with the existing portfolio. Do not silently choose between these models during implementation.
+- At desktop, keep the title/meta in a balanced split and allow the certificate image to dominate the next row. At phone, stack title, description, metadata and image; make related items fully operable with touch and keyboard. Exact sizes and breakpoints require matching-viewport local comparison after implementation.
+- Motion proposal is intentionally restrained: staged title/metadata entrance and image reveal only if fresh in-motion inspection supports them; related-card hover/focus treatments may follow the existing site's design language. No unobserved image parallax, pointer tilt, zoom or auto-playing media. Respect `prefers-reduced-motion`, reloaded deep links, and browser Back.
+
+### Certificate detail comparison checklist (not yet executed)
+
+- [ ] Confirm route model and whether the first release covers ten featured certificates or all 27.
+- [ ] Reinspect source detail at matching desktop/phone viewports in motion, including loader/entrance, Back, related-item hover, and reduced-motion behavior; distinguish observed behavior from the local creative adaptation.
+- [ ] Verify title, issuer, category, year, description, slug and image against the existing portfolio for every included certificate; confirm no missing assets or fabricated fields.
+- [ ] Compare each implemented layout stage against source content hierarchy and against the local project-detail design at 1440×900, 390×844 and the responsive transition width.
+- [ ] Test direct deep-link load, in-page or per-page navigation, browser Back/Forward, menu/header/footer destinations, related items and “View all certs.”
+- [ ] Observe entrance/hover/scroll animations in motion, including triggers and timing; test reduced motion, keyboard, touch-width layout, no overflow and image decode.
+- [ ] Record each completed section, unresolved visual differences and regressions here and in IMPLEMENTATION_PLAN.md before claiming parity.
+
 ## 2026-10-16 — Certificate adaptation and footer correction
 
 User-directed change supersedes the homepage form portion of S05: retain the offset scrolling composition and pinned introduction, but replace its form with ten certificate previews in two columns. The heading is “Certificates”; the About CTA and collection footer say “View all certs” and link to the existing full collection. Certificate detail links also use the existing portfolio. The menu retains the inquiry form, opened by “Let’s Talk”; `#contact` still reaches the section's public social links, and `#certificates` reaches the preview grid. Old `#inquiry` links open the menu.
